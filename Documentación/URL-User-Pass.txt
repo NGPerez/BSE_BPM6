@@ -1,0 +1,9 @@
+Trazabilidad: 
+http://jboss-test01:8080/TrazaWeb/login.jsf  
+User: TALLER519 
+pass: Taller.519
+
+Rector: 
+http://desa-app:8888/forms/frmservlet?config=rectest  ese mismo
+User: TESTRECL2 
+pass: TESTING-3
