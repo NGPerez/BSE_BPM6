@@ -1,0 +1,11 @@
+[debug (15/08/18 14:53:26)] Debug: setLogFile: C:\Users\ngperez\Documents\Git Repositorio\BSE_BPM6\BPM6\Sikuli_Run\SikuliX-1.1.2-SetupLog.txt
+[debug (15/08/18 14:53:26)] RunSetup: ... starting with no args given
+[debug (15/08/18 14:53:26)] RunSetup: Setup: 1.1.2 2018-03-08_08:37 in folder:
+C:\Users\ngperez\Documents\Git Repositorio\BSE_BPM6\BPM6\Sikuli_Run
+[debug (15/08/18 14:53:26)] RunSetup: RunningSystem: Windows 10.0
+[debug (15/08/18 14:53:26)] RunSetup: parent of jar/classes: C:\Users\ngperez\Documents\Git Repositorio\BSE_BPM6\BPM6\Sikuli_Run
+[debug (15/08/18 14:53:26)] RunSetup: RunningJava: Java 8 (amd64) 1.8.0_181-b13
+[debug (15/08/18 14:53:26)] init user preferences
+[debug (15/08/18 14:53:29)] RunTimeSETUP: final cleanup
+[debug (15/08/18 14:53:29)] FileManager: deleteFileOrFolder:
+C:\Users\ngperez\AppData\Local\Temp\Sikulix_1647145486
