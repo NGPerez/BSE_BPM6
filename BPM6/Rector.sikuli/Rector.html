@@ -75,16 +75,18 @@ os.system(<span class="str">"taskkill /f /im iexplore.exe"</span>)
 
 f = open(<span class="str">'Parametros.txt'</span>,<span class="str">'r'</span>)
 inp = open(<span class="str">'Entradas.txt'</span>,<span class="str">'r'</span>)
-l = open(<span class="str">'Resultado.txt'</span>,<span class="str">'w'</span>)
+l = open(<span class="str">'Log.txt'</span>,<span class="str">'w'</span>)
+S = open (<span class="str">'Resultado.txt'</span>,<span class="str">'w'</span>)
 Nav = f.readline()
 Url = f.readline()
 Nav = <span class="str">'C:\Program Files\Internet Explorer\iexplore.exe'</span>
 openApp (Nav)
 <span class="skw">wait</span>(<span class="dig">2</span>)
-<span class="skw">wait</span>(<img src="1534436384508.png" />)
+<span class="cmt">#wait("Home.PNG")</span>
 <span class="skw">wait</span>(<span class="dig">4</span>)
 <span class="skw">click</span>(<img src="1534440084048.png" />)
-paste(Pattern(<img src="1534355682379.png" />).similar(<span class="dig">0.60</span>), Url)
+<span class="skw">wait</span>(<span class="dig">1</span>)
+paste(<img src="1534508316424.png" />, Url)
 <span class="skw">wait</span>(<span class="dig">3</span>)
 <span class="skw">type</span> (Key.ENTER)
 
@@ -119,45 +121,54 @@ paste(<img src="1533657077187.png" />, user)
                 <span class="kw">if</span>(exists(<img src="Poliza.png" />)):
                     <span class="skw">click</span>(<img src="Poliza-1.png" />)
                     cantMatriculas = inp.readline()
-                    Matricula = inp.readline()
-                    paste(<img src="1534436811441.png" />, Matricula)
-                    <span class="skw">click</span>(<img src="1534436556126.png" />)
-                    <span class="skw">wait</span>(<img src="1534436610250.png" />)
-                    m = <span class="skw">find</span>(<img src="1534439738589.png" />).left(<span class="dig">83</span>)
-                    <span class="cmt">#l.write(m.getX())</span>
-                    <span class="cmt">#l.write(m.getY())</span>
-                    <span class="cmt">#l.write(m.text()) </span>
-                    m.highlight (<span class="dig">3</span>)
-                    fecha = m.text()
-                    dia = fecha[<span class="dig">0</span>:<span class="dig">2</span>]
-                    mes = fecha[<span class="dig">3</span>:<span class="dig">5</span>]
-                    anio = fecha[(len(fecha)-<span class="dig">4</span>):(len(fecha))]
-                    DiaR = inp.readline()
-                    MesR = inp.readline()
-                    AnioR = inp.readline()
+                    <span class="kw">for</span> x <span class="kw">in</span> range(<span class="dig">0</span>, int(cantMatriculas)):
+                        Matricula = inp.readline()
+                        DiaR = inp.readline()
+                        MesR = inp.readline()
+                        AnioR = inp.readline()
+                        Serie = inp.readline()
+                        NroD = inp.readline()
+                        paste(<img src="1534436811441.png" />, Matricula)
+                        <span class="skw">click</span>(<img src="1534436556126.png" />)
+                        <span class="skw">wait</span>(<img src="1534436610250.png" />)
+                        m = <span class="skw">find</span>(<img src="1534439738589.png" />).left(<span class="dig">83</span>)
+                        m.highlight (<span class="dig">3</span>)
+                        fecha = m.text()
+                        dia = fecha[<span class="dig">0</span>:<span class="dig">2</span>]
+                        mes = fecha[<span class="dig">3</span>:<span class="dig">5</span>]
+                        anio = fecha[(len(fecha)-<span class="dig">4</span>):(len(fecha))]
+                        <span class="cmt">#l.write(dia+'/'+mes+'/'+ str(anio) +'\n')   </span>
 
-                    l.write(dia+<span class="str">'/'</span>+mes+<span class="str">'/'</span>+anio)
-                    l.write(anio[<span class="dig">3</span>:<span class="dig">3</span>])
+                        <span class="kw">if</span> (anio == <span class="str">'201S'</span>):
+                            anio = <span class="str">'2015'</span>
 
-                    <span class="kw">if</span> (anio[<span class="dig">3</span>:<span class="dig">3</span>] == <span class="str">'S'</span>):
-                       anio[<span class="dig">3</span>:<span class="dig">3</span>] = <span class="dig">5</span>
-                       l.write(anio)
+                        <span class="kw">if</span> ((int(AnioR)&gt;=int(anio))<span class="kw">and</span>(int(MesR)&gt;=int(mes))<span class="kw">and</span>(int(DiaR)&gt;int(dia))):
+                            m2 = <span class="skw">find</span>(<img src="1534439738589.png" />).left(<span class="dig">121</span>).below(<span class="dig">13</span>)
+                            m2.highlight (<span class="dig">3</span>)
+                            fechaA = m2.text()
+                            DiaA = fechaA[<span class="dig">1</span>:<span class="dig">3</span>]
+                            MesA = fechaA[<span class="dig">4</span>:<span class="dig">6</span>]
+                            AnioA = fechaA[<span class="dig">7</span>:<span class="dig">11</span>]
+                            l.write(DiaA+<span class="str">'/'</span>+MesA+<span class="str">'/'</span>+ AnioA +<span class="str">'\n'</span>)
+                            m3=<span class="skw">find</span>(<img src="1534514242355.png" />).below(<span class="dig">17</span>)
+                            m3.highlight (<span class="dig">3</span>)
+                            dato = m3.text()
+                            <span class="kw">if</span> ( (int(AnioA)&gt;int(AnioR)) <span class="kw">or</span> ( (int(AnioA)==int(AnioR)) <span class="kw">and</span> (int(MesA)&gt;int(MesR)) ) <span class="kw">or</span> ( (int(AnioA)==int(AnioR)) <span class="kw">and</span> (int(MesA)==int(MesR)) <span class="kw">and</span> (int(DiaA)&gt;int(DiaR)))):
+                                S.write(Matricula+DiaR+MesR+AnioR+Serie+NroD+dato+<span class="str">'\n'</span>)
+                                l.write(Matricula + <span class="str">'Correcta'</span>+<span class="str">'\n'</span>)
+                            <span class="kw">else</span>:
+                                l.write(Matricula + <span class="str">'Incorrecta: Fecha hasta inferior'</span>+<span class="str">'\n'</span>)
+                        <span class="kw">else</span>:
+                            l.write(Matricula + <span class="str">'Incorrecta: Fecha desde superior'</span>+<span class="str">'\n'</span>)
+                        extra = inp.readline()
+                        <span class="skw">click</span>(<img src="1534515934104.png" />)
 
-                    <span class="kw">if</span> ((int(AnioR)&gt;=int(anio))<span class="kw">and</span>(int(MesR)&gt;=int(mes))<span class="kw">and</span>(int(DiaR)&gt;int(dia))):
-                        <span class="cmt">##Este funciona</span>
-                        l.write(<span class="str">'EsteFunciona'</span>)
-                    <span class="kw">else</span>:
-                        <span class="cmt">#No funciona debo buscar otro</span>
-                        l.write(<span class="str">'Nofunciono'</span>)
                 <span class="kw">else</span>:
                     l.write(<span class="str">'&gt;&gt; ERROR_ Falta la opción de Consultas/Varias/Póliza por matrícula.'</span> + <span class="str">'\n'</span>)
             <span class="kw">else</span>:
                 l.write(<span class="str">'&gt;&gt; ERROR_ Falta la opción de Consultas/Varias.'</span> + <span class="str">'\n'</span>)
         <span class="kw">else</span>:
             l.write(<span class="str">'&gt;&gt; ERROR_ Falta la opción de Consultas.'</span> + <span class="str">'\n'</span>)
-
-
-
 
 <span class="cmt">#os.system("taskkill /f /im iexplore.exe")</span>
 
