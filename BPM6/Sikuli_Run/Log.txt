@@ -1,9 +1,18 @@
 Comienza el login  
-20/03/2015
 19/09/2017
 NTP4425
 Correcta
-20/03/2015
-19/09/2017
-NTP4425
-Correcta
+SJI936
+Incorrecta: Fecha desde superior
+31/03/2015
+SBG3924
+Incorrecta: Fecha hasta inferior
+SBU6045
+Incorrecta: Fecha desde superior
+SOF4789
+Incorrecta: Fecha desde superior
+B558891
+Incorrecta: Fecha desde superior
+04/10/2016
+SBP7802
+Incorrecta: Fecha hasta inferior

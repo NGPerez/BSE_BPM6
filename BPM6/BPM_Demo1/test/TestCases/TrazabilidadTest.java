@@ -122,7 +122,7 @@ public class TrazabilidadTest extends TestCase {
         driver.findElement(By.xpath("//button[@id='frmPrincipal:btnBuscar']")).submit();
         cantElementos = driver.findElement(By.xpath("//div[@id='frmPrincipal:listaReclamos_paginator_top']/select")).getText();
         cantElementos = cantElementos.substring(0, 2);
-        fileWriter = new FileWriter("entrada.txt");
+        fileWriter = new FileWriter("..//Sikuli_Run//Entradas.txt");
         printWriter = new PrintWriter(fileWriter);
         printWriter.println(cantElementos);
         for (int i = 1; i < 11; i++) {
@@ -162,6 +162,7 @@ public class TrazabilidadTest extends TestCase {
             printWriter.println("*");
         }
         printWriter.close();
+        
     }
 
 }
