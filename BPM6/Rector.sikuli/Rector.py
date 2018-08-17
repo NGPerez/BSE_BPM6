@@ -24,7 +24,7 @@ if (exists("1534357421513.png")):
 
 user = f.readline() 
 pasw = f.readline()
-
+ejecutivo = f.readline()
 
 l.write('Comienza el login  \n')
 
@@ -98,6 +98,60 @@ else:
                                 l.write(Matricula + 'Incorrecta: Fecha desde superior'+'\n')
                             extra = inp.readline()
                             click("1534515934104.png")
+                            
+                    S.close ()
+                    click("1534526678006.png")
+                    click("1534526694204.png")
+                    click("Decla.png")
+                    click("Declarar.png")
+                    SS = open ('Resultado.txt','r')
+
+                    i = 1;
+                    while (i < 2):
+                        i=i+2
+                        paste(Pattern("1534526928983.png").targetOffset(12,0), '4')
+                        type (Key.TAB)
+                        Aux1 = SS.readline()
+                        Aux2 = SS.readline()
+                        Aux3 = SS.readline()
+                        Aux4 = SS.readline()
+                        Serie = SS.readline()
+                        Parte = SS.readline()
+                        Poliza = SS.readline()
+                        paste(Pattern("1534528579411.png").targetOffset(41,0),Serie)
+                        paste(Pattern("1534530348596.png").targetOffset(-30,0),Parte)
+                        type (Key.TAB)
+                        paste(Pattern("1534528685082.png").targetOffset(-35,0),Poliza)
+                        type (Key.TAB)
+                        click("1534528770815.png")
+                        click("1534528787433.png")
+                        if (exists("1534528813101.png")):
+                            click("1534528826726.png")
+                        type (Key.TAB)
+                        if(exists("1534528914255.png")):
+                            click("1534528924103.png")
+                        paste(Pattern("1534528945608.png").targetOffset(23,0),'02')
+                        #type (Key.TAB)
+                        paste(find("1534531266929.png").right(5),'3999')
+                        type (Key.TAB)
+                        paste(find("1534529127934.png").right(5),ejecutivo)
+                        type(Key.TAB)
+                        paste(find("1534529173382.png").right(5),'200')
+                        type(Key.TAB)
+                        click("1534529195660.png")
+                        
+                                
+                          
+                       
+                       
+                       
+                       
+                       
+                        
+                        
+                            
+                    
+                    
                         
                 else:
                     l.write('>> ERROR_ Falta la opción de Consultas/Varias/Póliza por matrícula.' + '\n')

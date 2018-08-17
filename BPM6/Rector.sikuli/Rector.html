@@ -96,7 +96,7 @@ paste(<img src="1534508316424.png" />, Url)
 
 user = f.readline()
 pasw = f.readline()
-
+ejecutivo = f.readline()
 
 l.write(<span class="str">'Comienza el login  \n'</span>)
 
@@ -170,6 +170,60 @@ paste(<img src="1533657077187.png" />, user)
                                 l.write(Matricula + <span class="str">'Incorrecta: Fecha desde superior'</span>+<span class="str">'\n'</span>)
                             extra = inp.readline()
                             <span class="skw">click</span>(<img src="1534515934104.png" />)
+
+                    S.close ()
+                    <span class="skw">click</span>(<img src="1534526678006.png" />)
+                    <span class="skw">click</span>(<img src="1534526694204.png" />)
+                    <span class="skw">click</span>(<img src="Decla.png" />)
+                    <span class="skw">click</span>(<img src="Declarar.png" />)
+                    SS = open (<span class="str">'Resultado.txt'</span>,<span class="str">'r'</span>)
+
+                    i = <span class="dig">1</span>;
+                    <span class="kw">while</span> (i &lt; <span class="dig">2</span>):
+                        i=i+<span class="dig">2</span>
+                        paste(Pattern(<img src="1534526928983.png" />).targetOffset(<span class="dig">12</span>,<span class="dig">0</span>), <span class="str">'4'</span>)
+                        <span class="skw">type</span> (Key.TAB)
+                        Aux1 = SS.readline()
+                        Aux2 = SS.readline()
+                        Aux3 = SS.readline()
+                        Aux4 = SS.readline()
+                        Serie = SS.readline()
+                        Parte = SS.readline()
+                        Poliza = SS.readline()
+                        paste(Pattern(<img src="1534528579411.png" />).targetOffset(<span class="dig">41</span>,<span class="dig">0</span>),Serie)
+                        paste(Pattern(<img src="1534530348596.png" />).targetOffset(-<span class="dig">30</span>,<span class="dig">0</span>),Parte)
+                        <span class="skw">type</span> (Key.TAB)
+                        paste(Pattern(<img src="1534528685082.png" />).targetOffset(-<span class="dig">35</span>,<span class="dig">0</span>),Poliza)
+                        <span class="skw">type</span> (Key.TAB)
+                        <span class="skw">click</span>(<img src="1534528770815.png" />)
+                        <span class="skw">click</span>(<img src="1534528787433.png" />)
+                        <span class="kw">if</span> (exists(<img src="1534528813101.png" />)):
+                            <span class="skw">click</span>(<img src="1534528826726.png" />)
+                        <span class="skw">type</span> (Key.TAB)
+                        <span class="kw">if</span>(exists(<img src="1534528914255.png" />)):
+                            <span class="skw">click</span>(<img src="1534528924103.png" />)
+                        paste(Pattern(<img src="1534528945608.png" />).targetOffset(<span class="dig">23</span>,<span class="dig">0</span>),<span class="str">'02'</span>)
+                        <span class="cmt">#type (Key.TAB)</span>
+                        paste(<span class="skw">find</span>(<img src="1534531266929.png" />).right(<span class="dig">5</span>),<span class="str">'3999'</span>)
+                        <span class="skw">type</span> (Key.TAB)
+                        paste(<span class="skw">find</span>(<img src="1534529127934.png" />).right(<span class="dig">5</span>),ejecutivo)
+                        <span class="skw">type</span>(Key.TAB)
+                        paste(<span class="skw">find</span>(<img src="1534529173382.png" />).right(<span class="dig">5</span>),<span class="str">'200'</span>)
+                        <span class="skw">type</span>(Key.TAB)
+                        <span class="skw">click</span>(<img src="1534529195660.png" />)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <span class="kw">else</span>:
                     l.write(<span class="str">'&gt;&gt; ERROR_ Falta la opción de Consultas/Varias/Póliza por matrícula.'</span> + <span class="str">'\n'</span>)

@@ -2,3 +2,4 @@ C:\Program Files\Internet Explorer\iexplore.exe
 http://desa-app:8888/forms/frmservlet?config=rectest
 TESTRECL2
 TESTING-3
+STSOSA
