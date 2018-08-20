@@ -12,8 +12,8 @@ openApp (Nav)
 wait(2)
 #wait("Home.PNG")
 wait(4)
-click("1534440084048.png")
-wait(1)
+#click("1534440084048.png")
+#wait(1)
 paste("1534508316424.png", Url)
 wait(3)
 type (Key.ENTER)
@@ -131,28 +131,24 @@ else:
                         if(exists("1534528914255.png")):
                             click("1534528924103.png")
                         paste(Pattern("1534528945608.png").targetOffset(23,0),'02')
-                        #type (Key.TAB)
-                        paste(find("1534531266929.png").right(5),'3999')
                         type (Key.TAB)
+                        click(find("1534531266929.png").right(6))  
+                        type (Key.TAB)
+                        #paste(find("1534531266929.png").right(6),'3999')  
+                        doubleClick(find("1534790574066.png").right(6))
+                        type(Key.DELETE)
+                        paste(find("1534790574066.png").right(6),'3999')
+                        click("1534790645595.png")
+                        click("1534790688721.png")
+                        click("1534790700051.png")
+                        #paste(Pattern("1534790733909.png").targetOffset(25,0),ejecutivo)
+                        #type (Key.TAB)                        
                         paste(find("1534529127934.png").right(5),ejecutivo)
                         type(Key.TAB)
                         paste(find("1534529173382.png").right(5),'200')
                         type(Key.TAB)
                         click("1534529195660.png")
-                        
-                                
-                          
-                       
-                       
-                       
-                       
-                       
-                        
-                        
-                            
                     
-                    
-                        
                 else:
                     l.write('>> ERROR_ Falta la opción de Consultas/Varias/Póliza por matrícula.' + '\n')
             else:

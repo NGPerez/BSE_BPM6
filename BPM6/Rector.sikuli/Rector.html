@@ -84,8 +84,8 @@ openApp (Nav)
 <span class="skw">wait</span>(<span class="dig">2</span>)
 <span class="cmt">#wait("Home.PNG")</span>
 <span class="skw">wait</span>(<span class="dig">4</span>)
-<span class="skw">click</span>(<img src="1534440084048.png" />)
-<span class="skw">wait</span>(<span class="dig">1</span>)
+<span class="cmt">#click("1534440084048.png")</span>
+<span class="cmt">#wait(1)</span>
 paste(<img src="1534508316424.png" />, Url)
 <span class="skw">wait</span>(<span class="dig">3</span>)
 <span class="skw">type</span> (Key.ENTER)
@@ -203,27 +203,23 @@ paste(<img src="1533657077187.png" />, user)
                         <span class="kw">if</span>(exists(<img src="1534528914255.png" />)):
                             <span class="skw">click</span>(<img src="1534528924103.png" />)
                         paste(Pattern(<img src="1534528945608.png" />).targetOffset(<span class="dig">23</span>,<span class="dig">0</span>),<span class="str">'02'</span>)
-                        <span class="cmt">#type (Key.TAB)</span>
-                        paste(<span class="skw">find</span>(<img src="1534531266929.png" />).right(<span class="dig">5</span>),<span class="str">'3999'</span>)
                         <span class="skw">type</span> (Key.TAB)
+                        <span class="skw">click</span>(<span class="skw">find</span>(<img src="1534531266929.png" />).right(<span class="dig">6</span>))
+                        <span class="skw">type</span> (Key.TAB)
+                        <span class="cmt">#paste(find("1534531266929.png").right(6),'3999')  </span>
+                        <span class="skw">doubleClick</span>(<span class="skw">find</span>(<img src="1534790574066.png" />).right(<span class="dig">6</span>))
+                        <span class="skw">type</span>(Key.DELETE)
+                        paste(<span class="skw">find</span>(<img src="1534790574066.png" />).right(<span class="dig">6</span>),<span class="str">'3999'</span>)
+                        <span class="skw">click</span>(<img src="1534790645595.png" />)
+                        <span class="skw">click</span>(<img src="1534790688721.png" />)
+                        <span class="skw">click</span>(<img src="1534790700051.png" />)
+                        <span class="cmt">#paste(Pattern("1534790733909.png").targetOffset(25,0),ejecutivo)</span>
+                        <span class="cmt">#type (Key.TAB)                        </span>
                         paste(<span class="skw">find</span>(<img src="1534529127934.png" />).right(<span class="dig">5</span>),ejecutivo)
                         <span class="skw">type</span>(Key.TAB)
                         paste(<span class="skw">find</span>(<img src="1534529173382.png" />).right(<span class="dig">5</span>),<span class="str">'200'</span>)
                         <span class="skw">type</span>(Key.TAB)
                         <span class="skw">click</span>(<img src="1534529195660.png" />)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <span class="kw">else</span>:
                     l.write(<span class="str">'&gt;&gt; ERROR_ Falta la opción de Consultas/Varias/Póliza por matrícula.'</span> + <span class="str">'\n'</span>)
