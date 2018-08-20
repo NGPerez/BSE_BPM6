@@ -48,14 +48,43 @@ public class Parametros {
     private static final String USERNAME_BPM = "";
     private static final String PASSWORD_BPM = "";
     
+    /*******************************CONSTANTES*********************************/
+    
+    /*                             TRAZABILIDAD                               */
+    private static final String API_TRAZABILIDAD = "TRAZABILIDAD";
+    private static final String NAVIGATOR_TRAZABILIDAD = "CHROME";
+    
+    /*                                RECTOR                                  */
+    private static final String API_RECTOR = "RECTOR";
+    private static final String NAVIGATOR_RECTOR = "IE";
+    
+    /*                                  BPM                                   */
+    private static final String API_BPM = "BPM";
+    private static final String NAVIGATOR_BPM = "CHROME";
+    
+    /*                                 NAVEGADORES                            */
+    private static final String WEB_DRIVER_FIREFOX_PROPERTY = "webdriver.firefox.marionette";
+    private static final String WEB_DRIVER_FIREFOX_PATH = System.getProperty("user.dir") + "\\Insumos\\FirefoxDriverServer.exe";
+    private static final String WEB_DRIVER_CHROME_PROPERTY = "webdriver.chrome.driver";
+    private static final String WEB_DRIVER_CHROME_PATH = System.getProperty("user.dir") + "\\Insumos\\ChromeDriverServer.exe";
+    private static final String WEB_DRIVER_IE_PROPERTY = "webdriver.ie.driver";
+    private static final String WEB_DRIVER_IE_PATH = System.getProperty("user.dir") + "\\Insumos\\IEDriverServer.exe";
+    
+    /********************************VARIABLES*********************************/
     private static String domain;
     private static String port;
     private static String server;
     private static String loginSite;
     private static String username;
     private static String password;
+    private static String api;
+    private static String navigator;
+    private static String webDriverProperty;
+    private static String webDriverPath;
 
+    /*********************************INSTANCIA********************************/
     private static Parametros INSTANCIA = null;
+    
 
     private Parametros() {
         this.domain = DOMAIN_TRAZABILIDAD;
@@ -64,6 +93,10 @@ public class Parametros {
         this.loginSite = LOGIN_SITE_TRAZABILIDAD;
         this.username = USERNAME_TRAZABILIDAD;
         this.password = PASSWORD_TRAZABILIDAD;
+        this.api = API_TRAZABILIDAD;
+        this.navigator = NAVIGATOR_TRAZABILIDAD;
+        this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
+        this.webDriverPath = WEB_DRIVER_CHROME_PATH;
     }
 
     private Parametros(String api) {
@@ -74,6 +107,10 @@ public class Parametros {
             this.loginSite = LOGIN_SITE_TRAZABILIDAD;
             this.username = USERNAME_TRAZABILIDAD;
             this.password = PASSWORD_TRAZABILIDAD;
+            this.api = API_TRAZABILIDAD;
+            this.navigator = NAVIGATOR_TRAZABILIDAD;
+            this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
+            this.webDriverPath = WEB_DRIVER_CHROME_PATH;
         }else if (api.equalsIgnoreCase("RECTOR")) {
             this.domain = DOMAIN_RECTOR;
             this.port = PORT_RECTOR;
@@ -81,6 +118,10 @@ public class Parametros {
             this.loginSite = LOGIN_SITE_RECTOR;
             this.username = USERNAME_RECTOR;
             this.password = PASSWORD_RECTOR;
+            this.api = API_RECTOR;
+            this.navigator = NAVIGATOR_RECTOR;
+            this.webDriverProperty = WEB_DRIVER_IE_PROPERTY;
+            this.webDriverPath = WEB_DRIVER_IE_PATH;
         }else if (api.equalsIgnoreCase("BPM")) {
             this.domain = DOMAIN_BPM;
             this.port = PORT_BPM;
@@ -88,6 +129,10 @@ public class Parametros {
             this.loginSite = LOGIN_SITE_BPM;
             this.username = USERNAME_BPM;
             this.password = PASSWORD_BPM;
+            this.api = API_BPM;
+            this.navigator = NAVIGATOR_BPM;
+            this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
+            this.webDriverPath = WEB_DRIVER_CHROME_PATH;
         }else{
             this.domain = "";
             this.port = "";
@@ -95,6 +140,10 @@ public class Parametros {
             this.loginSite = "";
             this.username = "";
             this.password = "";
+            this.api = "";
+            this.navigator = "";
+            this.webDriverProperty = "";
+            this.webDriverPath = "";
         }
 
     }
@@ -127,5 +176,21 @@ public class Parametros {
     
     public String getPassword(){
         return password;
+    }
+    
+    public String getApi(){
+        return api;
+    }
+    
+    public String getNavigator(){
+        return navigator;
+    }
+    
+    public String getWebDriverProperty(){
+        return webDriverProperty;
+    }
+    
+    public String getWebDriverPath(){
+        return webDriverPath;
     }
 }

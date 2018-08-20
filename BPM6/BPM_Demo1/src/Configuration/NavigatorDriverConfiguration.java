@@ -16,21 +16,8 @@ public class NavigatorDriverConfiguration {
     private static String webDriverPath;
 
     public NavigatorDriverConfiguration(String navigator, String api) {
-        if (navigator.equalsIgnoreCase("FIREFOX")) {
-            webDriverProperty = "webdriver.firefox.marionette";
-            System.out.println("Path: " + System.getProperty("user.dir") + "\\Insumos\\FirefoxDriverServer.exe");
-            webDriverPath = System.getProperty("user.dir") + "\\Insumos\\FirefoxDriverServer.exe";
-        } else if (navigator.equalsIgnoreCase("CHROME")) {
-            webDriverProperty = "webdriver.chrome.driver";
-            System.out.println("Path: " + System.getProperty("user.dir") + "\\Insumos\\ChromeDriverServer.exe");
-            webDriverPath = System.getProperty("user.dir") + "\\Insumos\\ChromeDriverServer.exe";
-        } else if (navigator.equalsIgnoreCase("IE")) {
-            webDriverProperty = "webdriver.ie.driver";
-            System.out.println("Path: " + System.getProperty("user.dir") + "\\Insumos\\IEDriverServer.exe");
-            webDriverPath = System.getProperty("user.dir") + "\\Insumos\\IEDriverServer.exe";
-        } else {
-            webDriverProperty = "";
-        }
+        webDriverProperty = Parametros.getInstance(navigator).getWebDriverProperty();
+        webDriverPath = Parametros.getInstance(navigator).getWebDriverPath();
         init(navigator, api);
     }
 

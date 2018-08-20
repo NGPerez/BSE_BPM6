@@ -3,9 +3,13 @@ package TestCases;
 import Business.Logic.TrazabilidadRutinas;
 import Configuration.NavigatorDriverConfiguration;
 import Data.Parametros;
+import Entidades.SalidaSikulix;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import junit.framework.TestCase;
@@ -35,6 +39,7 @@ public class TrazabilidadTest2 extends TestCase {
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+    private List<SalidaSikulix> lstSikulix;
 
     public TrazabilidadTest2() {
     }
@@ -50,6 +55,7 @@ public class TrazabilidadTest2 extends TestCase {
     @Before
     @Override
     public void setUp() {
+        lstSikulix = new ArrayList<>();
         driver = TrazabilidadRutinas.getInstance().getWebDriver();
     }
 
@@ -96,116 +102,124 @@ public class TrazabilidadTest2 extends TestCase {
         }
     }
 
-    @Test
-    public void testSecuencia2() throws Exception {
-        /*
+    private void cargarEnListaSalidaSikulix(String path) {
+        System.out.println("cargarEnListaSalidaSikulix -> INICIO");
+        
+        //Atributos
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
         String matricula = "";
-        String fecha = "";
-        String dia = "", mes = "", anio = "";
+        String dia = "";
+        String mes = "";
+        String anio = "";
         String serie = "";
         String nroDenuncia = "";
-        String cantElementos = "";
-        
-        FileWriter fileWriter;
-        PrintWriter printWriter;
-         */
-        //System.out.println("LoginSite: " + Parametros.getInstance("TRAZABILIDAD").getLoginSite());
-        TrazabilidadRutinas.getInstance().login();
-        /*
-        driver.get(Parametros.getInstance("TRAZABILIDAD").getLoginSite());
-        driver.findElement(By.id("usuario")).clear();
-        driver.findElement(By.id("usuario")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getUsername());
-        driver.findElement(By.id("clave")).clear();
-        driver.findElement(By.id("clave")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getPassword());
-        driver.findElement(By.id("btnIngresar")).click();
-         */
-        driver.findElement(By.partialLinkText("Bandeja")).click();
+        String nroPoliza = "";
 
-        //Leer fichero que genera Sikulix
-        //Guardar campos del fichero en List<Entrada>
-        //Iterar List<Entrada>
-        //buscar por numeroDenuncia
-        driver.findElement(By.id("frmPrincipal:buscarTxt")).sendKeys("14802");
-        //driver.findElement(By.cssSelector("css=span.ui-button-text.ui-c")).click();
-        driver.findElement(By.xpath("//button[@id='frmPrincipal:listaReclamos:0:selectButton']/span")).click();
-        driver.findElement(By.linkText("Documentos Adjuntos")).click();
+        try {
+            // Apertura del fichero y creacion de BufferedReader para poder
+            // hacer una lectura comoda (disponer del metodo readLine()).
+            archivo = new File(path);
+            System.out.println("Path: " + path);
+            System.out.println("Archivo Path: " + archivo.getAbsolutePath());
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-        //Subir archivo
-        //driver.findElement(By.id("frmPrincipal:viewPppal:pfile_input")).click();
-        //Abrir el archivo
-        String path_file = System.getProperty("user.dir");
-
-        int k = 0;
-        String parent = "";
-        for (String retval : path_file.split("/")) {
-            if (!retval.equalsIgnoreCase("BPM6") && (k == 0)) {
-                parent += retval + "\\";
-            }else if(retval.equalsIgnoreCase("BPM6")){
-                parent += retval;
-                k++;
-            }else{}
-        }
-        
-        System.out.println("Parent path: " + parent);
-
-        driver.findElement(By.id("frmPrincipal:viewPppal:pfile_input")).sendKeys(parent + "Sikuli_Run\\Resultado.txt");
-        driver.findElement(By.xpath("//a[@id='frmPrincipal:viewPppal:j_idt155']/img")).click();
-        driver.findElement(By.xpath("//a[@id='frmPrincipal:j_idt53']/img")).click();
-
-        //driver.findElement(By.xpath("//button[@id='frmPrincipal:btnBuscar']")).submit();
-        //*[@id="frmPrincipal:listaReclamos:0:selectButton"]
-        //driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[1]/td[1]/span")).submit();
-        //driver.findElement(By.xpath("//button[@id='frmPrincipal:listaReclamos:0:selectButton']")).submit();
-        //driver.findElement(By.xpath("//button[@href='#frmPrincipal:viewPppal:documentos']")).submit();
-        /*
-        driver.findElement(By.partialLinkText("Bandeja")).click();
-        driver.findElement(By.partialLinkText("Estados")).click();
-        driver.findElement(By.xpath("//*[@class='ui-selectcheckboxmenu-items-wrapper']//*[text()='Devuelto al Taller']")).click();
-        driver.findElement(By.partialLinkText("Estados")).click();
-        driver.findElement(By.xpath("//button[@id='frmPrincipal:btnBuscar']")).submit();
-        cantElementos = driver.findElement(By.xpath("//div[@id='frmPrincipal:listaReclamos_paginator_top']/select")).getText();
-        cantElementos = cantElementos.substring(0, 2);
-        fileWriter = new FileWriter("entrada.txt");
-        printWriter = new PrintWriter(fileWriter);
-        printWriter.println(cantElementos);
-        for (int i = 1; i < 11; i++) {
-            for (int j = 1; j < 9; j++) {
-                if (j == 3) {
-                    serie = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
+            // Lectura del fichero
+            String linea;
+            int nroLinea = 0;
+            System.out.println("cargarEnListaSalidaSikulix -> ANTES DE while ((linea = br.readLine()) != null)") ;
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
+                switch (nroLinea % 7) {
+                    case 0: mes = linea; break;
+                    case 1: dia = linea; break;
+                    case 2: mes = linea; break;
+                    case 3: anio = linea; break;
+                    case 4: serie = linea; break;
+                    case 5: nroDenuncia = linea; break;
+                    case 6: nroPoliza = linea; break;
                 }
-                if (j == 4) {
-                    nroDenuncia = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
+                System.out.println("cargarEnListaSalidaSikulix -> nroLinea: " + nroLinea + " | nroLinea%7: " + (nroLinea%7));
+                if ((nroLinea > 0) && (nroLinea % 7 == 0)) {
+                    lstSikulix.add(new SalidaSikulix(matricula, dia, mes, anio, serie, nroDenuncia, nroPoliza));
                 }
-                if (j == 5) {
-                    matricula = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
-                }
-                if (j == 8) {
-                    fecha = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
-                }
+                nroLinea++;
             }
-            int k = 0;
-            for (String retval : fecha.split("/")) {
-                if (k == 0) {
-                    dia = retval;
-                }
-                if (k == 1) {
-                    mes = retval;
-                }
-                if (k == 2) {
-                    anio = retval;
-                }
-                k++;
+            System.out.println("cargarEnListaSalidaSikulix -> DESPUES DE while ((linea = br.readLine()) != null)");
+            if(lstSikulix.size() == 0){
+                System.out.println("cargarEnListaSalidaSikulix -> La lista lstSikulix es vacia");
             }
-            printWriter.println(matricula);
-            printWriter.println(dia);
-            printWriter.println(mes);
-            printWriter.println(anio);
-            printWriter.println(serie);
-            printWriter.println(nroDenuncia);
-            printWriter.println("*");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // En el finally cerramos el fichero, para asegurarnos
+            // que se cierra tanto si todo va bien como si salta 
+            // una excepcion.
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
-        printWriter.close();
-         */
+        System.out.println("cargarEnListaSalidaSikulix -> FIN");
     }
 
+    private String getParentPathSikuliTextFile() {
+        System.out.println("getParentPathSikuliTextFile -> INICIO");
+        
+        //Atributos
+        String path_file = System.getProperty("user.dir");
+        int k = 0;
+        String parent = "";
+
+        for (String retval : path_file.split("\\\\")) {
+            if (!retval.equalsIgnoreCase("BPM6") && (k == 0)) {
+                parent += retval + "\\";
+            } else if (retval.equalsIgnoreCase("BPM6")) {
+                parent += retval;
+                k++;
+            } else {}
+        }
+        System.out.println("getParentPathSikuliTextFile -> FIN");
+        return parent;
+    }
+    
+    private void mostrarListaSikulix(){
+        System.out.println("mostrarListaSikulix -> INICIO");
+        for(SalidaSikulix s : lstSikulix){
+            System.out.println();
+            System.out.println("Matricula: " + s.getMatricula());
+            System.out.println("Fecha: " + s.getDia() + "/" + s.getMes() + "/" + s.getAnio());
+            System.out.println("Serie: " + s.getSerie());
+            System.out.println("Numero de Denuncia: " + s.getNroDenuncia());
+            System.out.println("Numero de Poliza: " + s.getNroPoliza());
+            System.out.println();
+            System.out.println("===========================================================");
+        }
+        System.out.println("mostrarListaSikulix -> FIN");
+    }
+
+    @Test
+    public void testSecuencia2() throws Exception {
+        TrazabilidadRutinas.getInstance().login();
+        driver.findElement(By.partialLinkText("Bandeja")).click();
+        String parent = getParentPathSikuliTextFile();
+        String path = parent + "\\Sikuli_Run\\Resultado.txt";
+        System.out.println("Path: " + path);
+        cargarEnListaSalidaSikulix(path);
+        mostrarListaSikulix();
+        System.out.println("Despues de mostrar");
+        for (SalidaSikulix listaEntradas : lstSikulix) {
+            driver.findElement(By.id("frmPrincipal:buscarTxt")).sendKeys(listaEntradas.getNroDenuncia());
+            driver.findElement(By.xpath("//button[@id='frmPrincipal:listaReclamos:0:selectButton']/span")).click();
+            driver.findElement(By.linkText("Documentos Adjuntos")).click();
+            driver.findElement(By.id("frmPrincipal:viewPppal:pfile_input")).sendKeys(path);
+            driver.findElement(By.xpath("//a[@id='frmPrincipal:viewPppal:j_idt155']/img")).submit();
+            driver.findElement(By.xpath("//a[@id='frmPrincipal:j_idt53']/img")).click();
+        }
+    }
 }

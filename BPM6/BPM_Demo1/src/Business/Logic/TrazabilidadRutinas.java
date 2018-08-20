@@ -10,7 +10,7 @@ public class TrazabilidadRutinas {
     private WebDriver driver;
     private static TrazabilidadRutinas INSTANCE = null;
     private TrazabilidadRutinas(){
-        NavigatorDriverConfiguration fcd = new NavigatorDriverConfiguration("CHROME", "TRAZABILIDAD");
+        NavigatorDriverConfiguration fcd = new NavigatorDriverConfiguration(Parametros.getInstance().getNavigator(), Parametros.getInstance().getApi());
         driver = fcd.getDriver();
     }
     
@@ -27,17 +27,14 @@ public class TrazabilidadRutinas {
     }
     
     public void login(){
-        driver.get(Parametros.getInstance("TRAZABILIDAD").getLoginSite());
+        driver.get(Parametros.getInstance(Parametros.getInstance().getApi()).getLoginSite());
         driver.findElement(By.id("usuario")).clear();
-        driver.findElement(By.id("usuario")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getUsername());
+        driver.findElement(By.id("usuario")).sendKeys(Parametros.getInstance(Parametros.getInstance().getApi()).getUsername());
         driver.findElement(By.id("clave")).clear();
-        driver.findElement(By.id("clave")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getPassword());
+        driver.findElement(By.id("clave")).sendKeys(Parametros.getInstance(Parametros.getInstance().getApi()).getPassword());
         driver.findElement(By.id("btnIngresar")).click();
     }
     
     public void sprint4(){}
-    
-    
-    
     
 }
