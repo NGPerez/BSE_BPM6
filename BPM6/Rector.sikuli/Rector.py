@@ -148,7 +148,11 @@ else:
                         paste(find("1534529173382.png").right(5),'200')
                         type(Key.TAB)
                         click("1534529195660.png")
-                    
+                        if(exists("1534791857774.png")):
+                            click("1534791866109.png")
+                        if(exists("1534791919535.png")):
+                            click("1534791925951.png")
+                        
                 else:
                     l.write('>> ERROR_ Falta la opción de Consultas/Varias/Póliza por matrícula.' + '\n')
             else:

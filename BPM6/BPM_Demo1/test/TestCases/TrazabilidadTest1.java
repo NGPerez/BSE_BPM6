@@ -133,7 +133,8 @@ public class TrazabilidadTest1 extends TestCase {
                         entradaSikulix.setNroDenuncia(driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText());
                     }
                     if (j == 5) {
-                        entradaSikulix.setMatricula(driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText());matricula = ;
+                        entradaSikulix.setMatricula(driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText());
+                        //matricula = ;
                     }
                     if (j == 8) {
                         fecha = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
