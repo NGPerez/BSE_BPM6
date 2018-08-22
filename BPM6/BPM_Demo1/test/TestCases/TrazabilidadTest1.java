@@ -93,9 +93,10 @@ public class TrazabilidadTest1 extends TestCase {
     }
     
     private void mostrarListaSikulix(){
-        System.out.println("mostrarListaSikulix -> INICIO");
+        int i = 1;
         for(SalidaSikulix s : lstEntradaSikulix){
             System.out.println();
+            System.out.println("=========================="+i+"================================");
             System.out.println("Matricula: " + s.getMatricula());
             System.out.println("Fecha: " + s.getDia() + "/" + s.getMes() + "/" + s.getAnio());
             System.out.println("Serie: " + s.getSerie());
@@ -103,8 +104,8 @@ public class TrazabilidadTest1 extends TestCase {
             System.out.println("Numero de Poliza: " + s.getNroPoliza());
             System.out.println();
             System.out.println("===========================================================");
+            i++;
         }
-        System.out.println("mostrarListaSikulix -> FIN");
     }
 
     @Test
@@ -114,7 +115,6 @@ public class TrazabilidadTest1 extends TestCase {
         FileWriter fileWriter = new FileWriter("..//Sikuli_Run//Entradas.txt");
         PrintWriter printWriter = new PrintWriter(fileWriter);
         
-
         driver.get(Parametros.getInstance("TRAZABILIDAD").getLoginSite());
         driver.findElement(By.id("usuario")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getUsername());
         driver.findElement(By.id("clave")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getPassword());
@@ -124,25 +124,23 @@ public class TrazabilidadTest1 extends TestCase {
         driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados_panel']/div[2]/ul/li[2]/div/div/span")).click();
         driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados']/a/label")).click();
         driver.findElement(By.cssSelector("span.ui-button-text.ui-c")).submit();
-        System.out.println("ANTES DE DO WHILE");
+        WebElement nextPage = driver.findElement(By.cssSelector("span.ui-paginator-next.ui-state-default.ui-corner-all"));
         int inicio = 1;
-        do {
-            System.out.println("DENTRO INICIO DE DO WHILE");
-            
+        while(!driver.findElement(By.cssSelector("span.ui-paginator-next.ui-state-default.ui-corner-all")).getAttribute("class").contains("ui-state-disabled")){
             for (int i = 1; i < 11; i++) {
                 SalidaSikulix entradaSikulix = new SalidaSikulix();
                 for (int j = 1; j < 9; j++) {
                     if (j == 3) {
-                        entradaSikulix.setSerie(driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText());
+                        entradaSikulix.setSerie(driver.findElement(By.xpath("//*[@id=\"frmPrincipal:listaReclamos_data\"]/tr["+i+"]/td["+j+"]/span")).getText());
                     }
                     if (j == 4) {
-                        entradaSikulix.setNroDenuncia(driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText());
+                        entradaSikulix.setNroDenuncia(driver.findElement(By.xpath("//*[@id=\"frmPrincipal:listaReclamos_data\"]/tr["+i+"]/td["+j+"]/span")).getText());
                     }
                     if (j == 5) {
-                        entradaSikulix.setMatricula(driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText());
+                        entradaSikulix.setMatricula(driver.findElement(By.xpath("//*[@id=\"frmPrincipal:listaReclamos_data\"]/tr["+i+"]/td["+j+"]/span")).getText());
                     }
                     if (j == 8) {
-                        fecha = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
+                        fecha = driver.findElement(By.xpath("//*[@id=\"frmPrincipal:listaReclamos_data\"]/tr["+i+"]/td["+j+"]/span")).getText();
                     }
                 }
                 int k = 0;
@@ -161,16 +159,9 @@ public class TrazabilidadTest1 extends TestCase {
                 entradaSikulix.setNroPoliza("*");
                 lstEntradaSikulix.add(entradaSikulix);
             }
-            driver.findElement(By.cssSelector("span.ui-button-text.ui-c")).click();
-            
-            mostrarListaSikulix();
-            
-            System.out.println("DENTRO FIN DE DO WHILE");
-            driver.findElement(By.xpath("//span[5]/span")).click();
+            nextPage.click();
             inicio++;
-        } while (!(inicio == 39));
-        System.out.println("DESPUES DE DO WHILE");
-        //FOR PARA ITERAR EN LISTA
+        }
         printWriter.println(lstEntradaSikulix.size());
         for (SalidaSikulix s : lstEntradaSikulix) {
             printWriter.println(s.getMatricula());
@@ -181,64 +172,6 @@ public class TrazabilidadTest1 extends TestCase {
             printWriter.println(s.getNroDenuncia());
             printWriter.println(s.getNroPoliza());
         }
-
-        /*
-
-        System.out.println("LoginSite: " + Parametros.getInstance("TRAZABILIDAD").getLoginSite());
-        driver.get(Parametros.getInstance("TRAZABILIDAD").getLoginSite());
-        driver.findElement(By.id("usuario")).clear();
-        driver.findElement(By.id("usuario")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getUsername());
-        driver.findElement(By.id("clave")).clear();
-        driver.findElement(By.id("clave")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getPassword());
-        driver.findElement(By.id("btnIngresar")).click();
-        driver.findElement(By.partialLinkText("Bandeja")).click();
-        driver.findElement(By.partialLinkText("Estados")).click();
-        driver.findElement(By.xpath("//*[@class='ui-selectcheckboxmenu-items-wrapper']//*[text()='Devuelto al Taller']")).click();
-        driver.findElement(By.partialLinkText("Estados")).click();
-        driver.findElement(By.xpath("//button[@id='frmPrincipal:btnBuscar']")).submit();
-        cantElementos = driver.findElement(By.xpath("//div[@id='frmPrincipal:listaReclamos_paginator_top']/select")).getText();
-        cantElementos = cantElementos.substring(0, 2);
-        fileWriter = new FileWriter("..//Sikuli_Run//Entradas.txt");
-        printWriter = new PrintWriter(fileWriter);
-        printWriter.println(cantElementos);
-        for (int i = 1; i < 11; i++) {
-            for (int j = 1; j < 9; j++) {
-                if (j == 3) {
-                    serie = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
-                }
-                if (j == 4) {
-                    nroDenuncia = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
-                }
-                if (j == 5) {
-                    matricula = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
-                }
-                if (j == 8) {
-                    fecha = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
-                }
-            }
-            int k = 0;
-            for (String retval : fecha.split("/")) {
-                if (k == 0) {
-                    dia = retval;
-                }
-                if (k == 1) {
-                    mes = retval;
-                }
-                if (k == 2) {
-                    anio = retval;
-                }
-                k++;
-            }
-            printWriter.println(matricula);
-            printWriter.println(dia);
-            printWriter.println(mes);
-            printWriter.println(anio);
-            printWriter.println(serie);
-            printWriter.println(nroDenuncia);
-            printWriter.println("*");
-        }
-        printWriter.close();
-         */
     }
 
 }

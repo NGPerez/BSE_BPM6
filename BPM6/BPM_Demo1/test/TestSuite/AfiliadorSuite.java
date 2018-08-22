@@ -3,7 +3,7 @@ package TestSuite;
 //import TestCases.ConsultasFechaTest;
 //import TestCases.ConsultasTitularTest;
 //import TestCases.IngresoBROUTest;
-import TestCases.TrazabilidadTest;
+import TestCases.*;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import org.junit.After;
@@ -35,7 +35,8 @@ public class AfiliadorSuite {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTestSuite(TrazabilidadTest.class);
+        suite.addTestSuite(TrazabilidadTest1.class);
+        suite.addTestSuite(TrazabilidadTest2.class);
         return suite;
     }
 
