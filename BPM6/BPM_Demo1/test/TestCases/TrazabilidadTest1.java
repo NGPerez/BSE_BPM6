@@ -1,5 +1,6 @@
 package TestCases;
 
+import Business.Logic.TrazabilidadRutinas;
 import Configuration.NavigatorDriverConfiguration;
 import Data.Parametros;
 import Entidades.SalidaSikulix;
@@ -24,16 +25,11 @@ import org.openqa.selenium.WebElement;
 
 public class TrazabilidadTest1 extends TestCase {
 
-    /*                          Navigators                                    */
-    private static final String NAVIGATOR_RECTOR = "IE";
-    private static final String NAVIGATOR_TRAZABILIDAD = "CHROME";
-    private static final String NAVIGATOR_BPM = "FIREFOX";
-
     /*                          Atributes                                     */
     private WebDriver driver;
-    private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+    List<SalidaSikulix> lstEntradaSikulix;
 
     public TrazabilidadTest1() {
     }
@@ -49,9 +45,8 @@ public class TrazabilidadTest1 extends TestCase {
     @Before
     @Override
     public void setUp() {
-        NavigatorDriverConfiguration fcd = new NavigatorDriverConfiguration(NAVIGATOR_TRAZABILIDAD, "TRAZABILIDAD");
-        driver = fcd.getDriver();
-        baseUrl = fcd.getBaseUrl();
+        lstEntradaSikulix = new ArrayList<>();
+        driver = TrazabilidadRutinas.getInstance().getWebDriver();
     }
 
     @After
@@ -96,21 +91,28 @@ public class TrazabilidadTest1 extends TestCase {
             acceptNextAlert = true;
         }
     }
+    
+    private void mostrarListaSikulix(){
+        System.out.println("mostrarListaSikulix -> INICIO");
+        for(SalidaSikulix s : lstEntradaSikulix){
+            System.out.println();
+            System.out.println("Matricula: " + s.getMatricula());
+            System.out.println("Fecha: " + s.getDia() + "/" + s.getMes() + "/" + s.getAnio());
+            System.out.println("Serie: " + s.getSerie());
+            System.out.println("Numero de Denuncia: " + s.getNroDenuncia());
+            System.out.println("Numero de Poliza: " + s.getNroPoliza());
+            System.out.println();
+            System.out.println("===========================================================");
+        }
+        System.out.println("mostrarListaSikulix -> FIN");
+    }
 
     @Test
     public void testLoginCorrecto() throws Exception {
 
-        String matricula = "";
         String fecha = "";
-        String dia = "", mes = "", anio = "";
-        String serie = "";
-        String nroDenuncia = "";
-        String cantElementos = "";
-
         FileWriter fileWriter = new FileWriter("..//Sikuli_Run//Entradas.txt");
         PrintWriter printWriter = new PrintWriter(fileWriter);
-        
-        List<SalidaSikulix> lstEntradaSikulix = new ArrayList<>();
         
 
         driver.get(Parametros.getInstance("TRAZABILIDAD").getLoginSite());
@@ -121,10 +123,14 @@ public class TrazabilidadTest1 extends TestCase {
         driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados']/a/label")).click();
         driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados_panel']/div[2]/ul/li[2]/div/div/span")).click();
         driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados']/a/label")).click();
-
-        while (driver.findElement(By.cssSelector("span.ui-button-text.ui-c")).isEnabled()) {
-            SalidaSikulix entradaSikulix = new SalidaSikulix();
+        driver.findElement(By.cssSelector("span.ui-button-text.ui-c")).submit();
+        System.out.println("ANTES DE DO WHILE");
+        int inicio = 1;
+        do {
+            System.out.println("DENTRO INICIO DE DO WHILE");
+            
             for (int i = 1; i < 11; i++) {
+                SalidaSikulix entradaSikulix = new SalidaSikulix();
                 for (int j = 1; j < 9; j++) {
                     if (j == 3) {
                         entradaSikulix.setSerie(driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText());
@@ -134,7 +140,6 @@ public class TrazabilidadTest1 extends TestCase {
                     }
                     if (j == 5) {
                         entradaSikulix.setMatricula(driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText());
-                        //matricula = ;
                     }
                     if (j == 8) {
                         fecha = driver.findElement(By.xpath("//div[@class='ui-datatable-tablewrapper']/table/tbody/tr[" + i + "]/td[" + j + "]/span")).getText();
@@ -143,30 +148,38 @@ public class TrazabilidadTest1 extends TestCase {
                 int k = 0;
                 for (String retval : fecha.split("/")) {
                     if (k == 0) {
-                        dia = retval;
+                        entradaSikulix.setDia(retval);
                     }
                     if (k == 1) {
-                        mes = retval;
+                        entradaSikulix.setMes(retval);
                     }
                     if (k == 2) {
-                        anio = retval;
+                        entradaSikulix.setAnio(retval);
                     }
                     k++;
                 }
-
+                entradaSikulix.setNroPoliza("*");
+                lstEntradaSikulix.add(entradaSikulix);
             }
-
-            //FOR PARA ITERAR EN LISTA
-            printWriter.println(cantElementos);
-            printWriter.println(matricula);
-            printWriter.println(dia);
-            printWriter.println(mes);
-            printWriter.println(anio);
-            printWriter.println(serie);
-            printWriter.println(nroDenuncia);
-            printWriter.println("*");
-
             driver.findElement(By.cssSelector("span.ui-button-text.ui-c")).click();
+            
+            mostrarListaSikulix();
+            
+            System.out.println("DENTRO FIN DE DO WHILE");
+            driver.findElement(By.xpath("//span[5]/span")).click();
+            inicio++;
+        } while (!(inicio == 39));
+        System.out.println("DESPUES DE DO WHILE");
+        //FOR PARA ITERAR EN LISTA
+        printWriter.println(lstEntradaSikulix.size());
+        for (SalidaSikulix s : lstEntradaSikulix) {
+            printWriter.println(s.getMatricula());
+            printWriter.println(s.getDia());
+            printWriter.println(s.getMes());
+            printWriter.println(s.getAnio());
+            printWriter.println(s.getSerie());
+            printWriter.println(s.getNroDenuncia());
+            printWriter.println(s.getNroPoliza());
         }
 
         /*
