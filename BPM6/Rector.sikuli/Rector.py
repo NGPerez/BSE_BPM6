@@ -49,7 +49,11 @@ else:
                 if(exists("Poliza.png")):
                     click("Poliza-1.png")
                     cantMatriculas = inp.readline() 
-                    for x in range(0, int(cantMatriculas)):
+                    i = 1
+                    cantidad = 0; 
+                    x = 0
+                    while ((x < int(cantMatriculas)) && (cantidad <= 6)):
+                        
                         Matricula = inp.readline()
                         DiaR = inp.readline()
                         MesR = inp.readline()
@@ -91,6 +95,7 @@ else:
                                 dato = m3.text()                            
                                 if ( (int(AnioA)>int(AnioR)) or ( (int(AnioA)==int(AnioR)) and (int(MesA)>int(MesR)) ) or ( (int(AnioA)==int(AnioR)) and (int(MesA)==int(MesR)) and (int(DiaA)>int(DiaR)))):
                                     S.write(Matricula+DiaR+MesR+AnioR+Serie+NroD+dato+'\n')
+                                    cantidad = cantidad + 1; 
                                     l.write(Matricula + 'Correcta'+'\n')
                                 else:
                                     l.write(Matricula + 'Incorrecta: Fecha hasta inferior'+'\n')
@@ -98,6 +103,7 @@ else:
                                 l.write(Matricula + 'Incorrecta: Fecha desde superior'+'\n')
                             extra = inp.readline()
                             click("1534515934104.png")
+                            x = x+1
                             
                     S.close ()
                     click("1534526678006.png")

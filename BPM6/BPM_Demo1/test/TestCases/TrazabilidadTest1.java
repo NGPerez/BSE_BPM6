@@ -131,7 +131,9 @@ public class TrazabilidadTest1 extends TestCase {
                 SalidaSikulix entradaSikulix = new SalidaSikulix();
                 for (int j = 1; j < 9; j++) {
                     if (j == 3) {
+                        //*[@id="frmPrincipal:listaReclamos_data"]/tr[1]/td[4]/span
                         entradaSikulix.setSerie(driver.findElement(By.xpath("//*[@id=\"frmPrincipal:listaReclamos_data\"]/tr["+i+"]/td["+j+"]/span")).getText());
+                        //entradaSikulix.setSerie(driver.findElement(By.xpath("//*[@id=\"frmPrincipal:listaReclamos_data\"]/tr[1]/td[4]/span")).getText());
                     }
                     if (j == 4) {
                         entradaSikulix.setNroDenuncia(driver.findElement(By.xpath("//*[@id=\"frmPrincipal:listaReclamos_data\"]/tr["+i+"]/td["+j+"]/span")).getText());
@@ -161,7 +163,9 @@ public class TrazabilidadTest1 extends TestCase {
             }
             nextPage.click();
             inicio++;
+            
         }
+        mostrarListaSikulix();
         printWriter.println(lstEntradaSikulix.size());
         for (SalidaSikulix s : lstEntradaSikulix) {
             printWriter.println(s.getMatricula());

@@ -121,7 +121,11 @@ paste(<img src="1533657077187.png" />, user)
                 <span class="kw">if</span>(exists(<img src="Poliza.png" />)):
                     <span class="skw">click</span>(<img src="Poliza-1.png" />)
                     cantMatriculas = inp.readline()
-                    <span class="kw">for</span> x <span class="kw">in</span> range(<span class="dig">0</span>, int(cantMatriculas)):
+                    i = <span class="dig">1</span>
+                    cantidad = <span class="dig">0</span>;
+                    x = <span class="dig">0</span>
+                    <span class="kw">while</span> ((x &lt; int(cantMatriculas)) &amp;&amp; (cantidad &lt;= <span class="dig">6</span>)):
+
                         Matricula = inp.readline()
                         DiaR = inp.readline()
                         MesR = inp.readline()
@@ -163,6 +167,7 @@ paste(<img src="1533657077187.png" />, user)
                                 dato = m3.text()
                                 <span class="kw">if</span> ( (int(AnioA)&gt;int(AnioR)) <span class="kw">or</span> ( (int(AnioA)==int(AnioR)) <span class="kw">and</span> (int(MesA)&gt;int(MesR)) ) <span class="kw">or</span> ( (int(AnioA)==int(AnioR)) <span class="kw">and</span> (int(MesA)==int(MesR)) <span class="kw">and</span> (int(DiaA)&gt;int(DiaR)))):
                                     S.write(Matricula+DiaR+MesR+AnioR+Serie+NroD+dato+<span class="str">'\n'</span>)
+                                    cantidad = cantidad + <span class="dig">1</span>;
                                     l.write(Matricula + <span class="str">'Correcta'</span>+<span class="str">'\n'</span>)
                                 <span class="kw">else</span>:
                                     l.write(Matricula + <span class="str">'Incorrecta: Fecha hasta inferior'</span>+<span class="str">'\n'</span>)
@@ -170,6 +175,7 @@ paste(<img src="1533657077187.png" />, user)
                                 l.write(Matricula + <span class="str">'Incorrecta: Fecha desde superior'</span>+<span class="str">'\n'</span>)
                             extra = inp.readline()
                             <span class="skw">click</span>(<img src="1534515934104.png" />)
+                            x = x+<span class="dig">1</span>
 
                     S.close ()
                     <span class="skw">click</span>(<img src="1534526678006.png" />)
