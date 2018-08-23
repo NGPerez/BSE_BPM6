@@ -1,5 +1,6 @@
 package TestCases;
 
+import Business.Logic.BPMRutinas;
 import Business.Logic.TrazabilidadRutinas;
 import Configuration.NavigatorDriverConfiguration;
 import Data.Parametros;
@@ -56,17 +57,18 @@ public class TrazabilidadTest3 extends TestCase {
     @Override
     public void setUp() {
         lstSikulix = new ArrayList<>();
-        driver = TrazabilidadRutinas.getInstance().getWebDriver();
+        driver = BPMRutinas.getInstance().getWebDriver();
+       
     }
 
     @After
     @Override
     public void tearDown() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
+        //driver.close();
+        //String verificationErrorString = verificationErrors.toString();
+        //if (!"".equals(verificationErrorString)) {
+        //    fail(verificationErrorString);
+        //}
     }
 
     private boolean isElementPresent(By by) {
@@ -202,24 +204,72 @@ public class TrazabilidadTest3 extends TestCase {
         }
         System.out.println("mostrarListaSikulix -> FIN");
     }
+    
+    @Test
+    public void testFlujo1() throws Exception {
+         BPMRutinas.getInstance().login();
+         //Este valor es leido de un archivo. 
+         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).clear();
+         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys("217237");
+         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
+                 
+                  
 
+//driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).clear();
+         //ie9-placeholder ng-binding"
+         //driver.findElement(By.xpath("//*[@id=\"dashboard-menu-item-2015.25\"]/div/div[2]/a")).click();
+         //driver.findElement(By.xpath("//*[@id=\"frag0_BaseTextDirectionMixin_0\"]")).sendKeys("22222");
+         
+                 //driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys("217237");
+         
+        // driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys("217237");
+        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]")).sendKeys("217237");
+        
+        // driver.findElement(By.xpath("//*[@id=\"dashboard-menu-item-2015.25\"]/div/div[2]/a")).click();
+         //driver.findElement(By.id("frag0_BaseTextDirectionMixin_0")).
+         //driver.findElement(By.xpath("//*[@id=\"frag0_BaseTextDirectionMixin_0\"]")).click(); 
+         
+         //driver.findElement(By.xpath("//*[@id=\"editor_BaseTextDirectionMixin_0\"]")).sendKeys("217237"); 
+       //  driver.findElement(By.xpath("//*[@id=\"frag0_BaseTextDirectionMixin_0\"]")).sendKeys("217237");
+//         driver.findElement(By.id("frag0_BaseTextDirectionMixin_0")).sendKeys("217237"); 
+         //frag0_BaseTextDirectionMixin_0
+         // //*[@id="editor_BaseTextDirectionMixin_0"]
+         // //*[@id="frag0_BaseTextDirectionMixin_0"]
+         
+        //driver.get("https://bpmd-pserver-cert.bse.com.uy:9443/ProcessPortal/dashboards/TWP/Processes");
+        //Buscar algun registro en estado aperturar
+       // BPMRutinas.getInstance().sprint4();
+       
+       //class="menu-button menu-button-left"
+       //driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados']/a/label")).click();
+         //driver.findElement(By.linkText("Procesos")).click();
+        //driver.findElement(By.id("taskListPaginationButton_PaginationBar_0")).click();
+         
+       //Parametrizar de un archivo. 
+       //driver.findElement(By.id("frag0_BaseTextDirectionMixin_0")).sendKeys("217237"); 
+       //driver.findElement(By.cssSelector("div.pillEditorMagnifyingGlass")).click();
+        //css=div.pillEditorMagnifyingGlass
+    }
     @Test
     public void testSecuencia2() throws Exception {
-        TrazabilidadRutinas.getInstance().login();
-        driver.findElement(By.partialLinkText("Bandeja")).click();
-        String parent = getParentPathSikuliTextFile();
-        String path = parent + "\\Sikuli_Run\\Resultado.txt";
-        System.out.println("Path: " + path);
-        cargarEnListaSalidaSikulix(path);
-        mostrarListaSikulix();
-        System.out.println("Despues de mostrar");
-        for (SalidaSikulix listaEntradas : lstSikulix) {
-            driver.findElement(By.id("frmPrincipal:buscarTxt")).sendKeys(listaEntradas.getNroDenuncia());
-            driver.findElement(By.xpath("//button[@id='frmPrincipal:listaReclamos:0:selectButton']/span")).click();
-            driver.findElement(By.linkText("Documentos Adjuntos")).click();
-            driver.findElement(By.id("frmPrincipal:viewPppal:pfile_input")).sendKeys(path);
-            driver.findElement(By.xpath("//a[@id='frmPrincipal:viewPppal:j_idt155']/img")).submit();
-            driver.findElement(By.xpath("//a[@id='frmPrincipal:j_idt53']/img")).click();
-        }
+        //BPMRutinas.getInstance().login();
+        
+        
+        
+//        driver.findElement(By.partialLinkText("Bandeja")).click();
+//        String parent = getParentPathSikuliTextFile();
+//        String path = parent + "\\Sikuli_Run\\Resultado.txt";
+//        System.out.println("Path: " + path);
+//        cargarEnListaSalidaSikulix(path);
+//        mostrarListaSikulix();
+//        System.out.println("Despues de mostrar");
+//        for (SalidaSikulix listaEntradas : lstSikulix) {
+//            driver.findElement(By.id("frmPrincipal:buscarTxt")).sendKeys(listaEntradas.getNroDenuncia());
+//            driver.findElement(By.xpath("//button[@id='frmPrincipal:listaReclamos:0:selectButton']/span")).click();
+//            driver.findElement(By.linkText("Documentos Adjuntos")).click();
+//            driver.findElement(By.id("frmPrincipal:viewPppal:pfile_input")).sendKeys(path);
+//            driver.findElement(By.xpath("//a[@id='frmPrincipal:viewPppal:j_idt155']/img")).submit();
+//            driver.findElement(By.xpath("//a[@id='frmPrincipal:j_idt53']/img")).click();
+//        }
     }
 }
