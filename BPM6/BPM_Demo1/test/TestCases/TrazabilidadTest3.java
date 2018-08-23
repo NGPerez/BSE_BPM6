@@ -209,10 +209,12 @@ public class TrazabilidadTest3 extends TestCase {
     public void testFlujo1() throws Exception {
          BPMRutinas.getInstance().login();
          //Este valor es leido de un archivo. 
-         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).clear();
-         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys("217237");
-         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
-                 
+         
+         //Dentro del bucle. 
+            driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).clear();
+            driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys("217237");
+            driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
+
                   
 
 //driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).clear();
