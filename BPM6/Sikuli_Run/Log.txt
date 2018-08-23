@@ -1,4 +1,148 @@
 Comienza el login  
-19/09/2017
-NTP4425
+09/03/2020
+SCF5744
+Correcta
+RAB9746
+Incorrecta: Fecha desde superior
+CCB3997
+Incorrecta: Fecha desde superior
+SAH9003
+Incorrecta: Fecha desde superior
+SBZ9209
+Incorrecta: Fecha desde superior
+24//0//201
+SCE1016
+Incorrecta: Fecha hasta inferior
+11/02/2017
+SBX7068
+Incorrecta: Fecha hasta inferior
+SAF1819
+Incorrecta: Fecha desde superior
+SBO2193
+Incorrecta: Fecha desde superior
+SAJ9298
+Incorrecta: Fecha desde superior
+18/09/2016
+SBP5761
+Incorrecta: Fecha hasta inferior
+SCF3191
+Incorrecta: Fecha desde superior
+SBI4553
+Incorrecta: Fecha desde superior
+03/12/2015
+SBZ8186
+Incorrecta: Fecha hasta inferior
+MAE1732
+Incorrecta: Fecha desde superior
+03/07/2017
+SJG545
+Incorrecta: Fecha hasta inferior
+SBZ3736
+Incorrecta: Fecha desde superior
+SMI1379
+Incorrecta: Fecha desde superior
+AAA2929
+Incorrecta: Fecha desde superior
+AAE4637
+Incorrecta: Fecha desde superior
+03/07/2019
+AAP8454
+Correcta
+AAB9260
+Incorrecta: Fecha desde superior
+AAP7854
+Incorrecta: Fecha desde superior
+KCA1984
+Incorrecta: Fecha desde superior
+06/02/2016
+SBQ1117
+Incorrecta: Fecha hasta inferior
+SCB2616
+Incorrecta: Fecha desde superior
+SCB7182
+Incorrecta: Fecha desde superior
+23/09/2017
+AAQ1516
+Incorrecta: Fecha hasta inferior
+31/12/2012
+SBN2606
+Incorrecta: Fecha hasta inferior
+31/12/2012
+SBN2606
+Incorrecta: Fecha hasta inferior
+SBW2448
+Incorrecta: Fecha desde superior
+03/09/2017
+SCG2122
+Incorrecta: Fecha hasta inferior
+SCE2931
+Incorrecta: Fecha desde superior
+31/12/2014
+SMI3056
+Incorrecta: Fecha hasta inferior
+03/01/2017
+SBJ6607
+Incorrecta: Fecha hasta inferior
+SCB5676
+Incorrecta: Fecha desde superior
+16/12/2018
+SCB6958
+Correcta
+SBJ7789
+Incorrecta: Fecha desde superior
+DAA9034
+Incorrecta: Fecha desde superior
+SAC9070
+Incorrecta: Fecha desde superior
+SCB5657
+Incorrecta: Fecha desde superior
+SBU2843
+Incorrecta: Fecha desde superior
+AAO8624
+Incorrecta: Fecha desde superior
+09/04/2013
+SBZ4617
+Incorrecta: Fecha hasta inferior
+SAJ6474
+Incorrecta: Fecha desde superior
+12/01/2013
+SCH4241
+Incorrecta: Fecha hasta inferior
+30/06/2011
+AAE2088
+Incorrecta: Fecha hasta inferior
+SBX3629
+Incorrecta: Fecha desde superior
+SCF4766
+Incorrecta: Fecha desde superior
+30/09/2013
+SBJ2610
+Incorrecta: Fecha hasta inferior
+SBS9803
+Incorrecta: Fecha desde superior
+06/09/2019
+SCG2284
+Correcta
+11/07/2016
+SBK8401
+Incorrecta: Fecha hasta inferior
+16/12/2017
+SCG3218
+Incorrecta: Fecha hasta inferior
+08/05/2016
+SCE1532
+Incorrecta: Fecha hasta inferior
+13/03/2019
+SCB6467
+Correcta
+SBF6165
+Incorrecta: Fecha desde superior
+22/11/2011
+LAB1002
+Incorrecta: Fecha hasta inferior
+31/10/2017
+SCH7988
+Incorrecta: Fecha hasta inferior
+21/04/2019
+SBI6507
 Correcta
