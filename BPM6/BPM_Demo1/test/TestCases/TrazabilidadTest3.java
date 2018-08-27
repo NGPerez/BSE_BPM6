@@ -5,6 +5,7 @@ import Business.Logic.TrazabilidadRutinas;
 import Configuration.NavigatorDriverConfiguration;
 import Data.Parametros;
 import Entidades.SalidaSikulix;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -23,6 +24,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -37,6 +39,7 @@ public class TrazabilidadTest3 extends TestCase {
 
     /*                          Atributes                                     */
     private WebDriver driver;
+    static NgWebDriver ngdriver;
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
@@ -58,7 +61,7 @@ public class TrazabilidadTest3 extends TestCase {
     public void setUp() {
         lstSikulix = new ArrayList<>();
         driver = BPMRutinas.getInstance().getWebDriver();
-       
+        ngdriver = new NgWebDriver((JavascriptExecutor) driver);
     }
 
     @After
@@ -135,22 +138,36 @@ public class TrazabilidadTest3 extends TestCase {
             while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
                 switch (nroLinea % 7) {
-                    case 0: mes = linea; break;
-                    case 1: dia = linea; break;
-                    case 2: mes = linea; break;
-                    case 3: anio = linea; break;
-                    case 4: serie = linea; break;
-                    case 5: nroDenuncia = linea; break;
-                    case 6: nroPoliza = linea; break;
+                    case 0:
+                        mes = linea;
+                        break;
+                    case 1:
+                        dia = linea;
+                        break;
+                    case 2:
+                        mes = linea;
+                        break;
+                    case 3:
+                        anio = linea;
+                        break;
+                    case 4:
+                        serie = linea;
+                        break;
+                    case 5:
+                        nroDenuncia = linea;
+                        break;
+                    case 6:
+                        nroPoliza = linea;
+                        break;
                 }
-                System.out.println("cargarEnListaSalidaSikulix -> nroLinea: " + nroLinea + " | nroLinea%7: " + (nroLinea%7));
+                System.out.println("cargarEnListaSalidaSikulix -> nroLinea: " + nroLinea + " | nroLinea%7: " + (nroLinea % 7));
                 if ((nroLinea > 0) && (nroLinea % 7 == 0)) {
                     lstSikulix.add(new SalidaSikulix(matricula, dia, mes, anio, serie, nroDenuncia, nroPoliza));
                 }
                 nroLinea++;
             }
             System.out.println("cargarEnListaSalidaSikulix -> DESPUES DE while ((linea = br.readLine()) != null)");
-            if(lstSikulix.size() == 0){
+            if (lstSikulix.size() == 0) {
                 System.out.println("cargarEnListaSalidaSikulix -> La lista lstSikulix es vacia");
             }
         } catch (Exception e) {
@@ -189,10 +206,10 @@ public class TrazabilidadTest3 extends TestCase {
         System.out.println("getParentPathSikuliTextFile -> FIN");
         return parent;
     }
-    
-    private void mostrarListaSikulix(){
+
+    private void mostrarListaSikulix() {
         System.out.println("mostrarListaSikulix -> INICIO");
-        for(SalidaSikulix s : lstSikulix){
+        for (SalidaSikulix s : lstSikulix) {
             System.out.println();
             System.out.println("Matricula: " + s.getMatricula());
             System.out.println("Fecha: " + s.getDia() + "/" + s.getMes() + "/" + s.getAnio());
@@ -207,23 +224,35 @@ public class TrazabilidadTest3 extends TestCase {
     
     @Test
     public void testFlujo1() throws Exception {
-         BPMRutinas.getInstance().login();
-         //Este valor es leido de un archivo. 
-         
-         //Dentro del bucle. 
-            //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).clear();
+        BPMRutinas.getInstance().login();
+        String parent = getParentPathSikuliTextFile();
+        String path = parent + "\\Sikuli_Run\\Resultado.txt";
+        System.out.println("Path: " + path);
+        cargarEnListaSalidaSikulix(path);
+        //Este valor es leido de un archivo. 
+
+        //Dentro del bucle. 
+        //for (SalidaSikulix listaEntradas : lstSikulix) {
+            //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys(listaEntradas.getNroDenuncia());
             driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys("217237");
             driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
+            //driver.findElement(By.cssSelector("button.btn.btn-default > i.bpm-icon.icon-search")).click();
+            //*[@id="1535046319987-grid-container"]/div[2]/div/div/div/div/div[1]/div/a
+            //driver.findElement(By.xpath("(//a[contains(@href, 'javascript:void(0)')])[80]")).click();
+            //driver.findElement(By.xpath("(//a[contains(@href, 'javascript:void(0)')])[84]")).click();
+            //*[@id="1535048215708-grid-container"]/div[2]/div/div/div/div/div[1]/div/span
+            //driver.findElement(By.xpath("//*[@id=\"1535048215708-grid-container\"]/div[2]/div/div/div/div/div[1]/div/span")).click();
+            //*[@id="1535046873471-grid-container"]/div[2]/div/div/div/div/div[1]/div/span
+        //}
 
-                  
-
-//driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).clear();
-         //ie9-placeholder ng-binding"
-         //driver.findElement(By.xpath("//*[@id=\"dashboard-menu-item-2015.25\"]/div/div[2]/a")).click();
-         //driver.findElement(By.xpath("//*[@id=\"frag0_BaseTextDirectionMixin_0\"]")).sendKeys("22222");
-         
-                 //driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys("217237");
-         
+        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).clear();
+        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys(nroDenuncia);
+        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
+        //driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).clear();
+        //ie9-placeholder ng-binding"
+        //driver.findElement(By.xpath("//*[@id=\"dashboard-menu-item-2015.25\"]/div/div[2]/a")).click();
+        //driver.findElement(By.xpath("//*[@id=\"frag0_BaseTextDirectionMixin_0\"]")).sendKeys("22222");
+        //driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys("217237");
         // driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys("217237");
         //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]")).sendKeys("217237");
         
