@@ -5,7 +5,6 @@ import Business.Logic.TrazabilidadRutinas;
 import Configuration.NavigatorDriverConfiguration;
 import Data.Parametros;
 import Entidades.SalidaSikulix;
-import com.paulhammant.ngwebdriver.ByAngular;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 import java.io.BufferedReader;
 import java.io.File;
@@ -226,32 +225,85 @@ public class TrazabilidadTest3 extends TestCase {
 
     @Test
     public void testFlujo1() throws Exception {
-
+<<<<<<< HEAD
+         BPMRutinas.getInstance().login();
+         //Este valor es leido de un archivo. 
+         
+         //Dentro del bucle. 
+            //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).clear();
+=======
+        BPMRutinas.getInstance().login();
         String parent = getParentPathSikuliTextFile();
         String path = parent + "\\Sikuli_Run\\Resultado.txt";
-        String nroDenuncia = "217237";
-
         System.out.println("Path: " + path);
         cargarEnListaSalidaSikulix(path);
-
-        BPMRutinas.getInstance().login();
-        BPMRutinas.getInstance().aperturar(nroDenuncia);
-        
-/*
-        if (driver.findElement(ByAngular.repeater("item in binding.value.dataStore.data | apexOrderBy:columnSort.col:columnSort.reverse | startFrom: options.firstItemIndex | limitTo: options.itemsPerPage track by item.bpm_id")).getText().equalsIgnoreCase("Genérico de taller")) {
-            if(!driver.findElement(ByAngular.model("$parent.selectedIds[item.bpm_id]")).isSelected()){
-                driver.findElement(ByAngular.model("$parent.selectedIds[item.bpm_id]")).click();
-            }
-        }
-        
-        */
-//Este valor es leido de un archivo. 
+        //Este valor es leido de un archivo. 
 
         //Dentro del bucle. 
         //for (SalidaSikulix listaEntradas : lstSikulix) {
-        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys(listaEntradas.getNroDenuncia());
-        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys("217237");
+            //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys(listaEntradas.getNroDenuncia());
+>>>>>>> c98ffa0e12b543bbf602304ceb2390a7d58b6bc4
+            driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys("217237");
+            driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
+            //driver.findElement(By.cssSelector("button.btn.btn-default > i.bpm-icon.icon-search")).click();
+            //*[@id="1535046319987-grid-container"]/div[2]/div/div/div/div/div[1]/div/a
+            //driver.findElement(By.xpath("(//a[contains(@href, 'javascript:void(0)')])[80]")).click();
+            //driver.findElement(By.xpath("(//a[contains(@href, 'javascript:void(0)')])[84]")).click();
+            //*[@id="1535048215708-grid-container"]/div[2]/div/div/div/div/div[1]/div/span
+            //driver.findElement(By.xpath("//*[@id=\"1535048215708-grid-container\"]/div[2]/div/div/div/div/div[1]/div/span")).click();
+            //*[@id="1535046873471-grid-container"]/div[2]/div/div/div/div/div[1]/div/span
+        //}
+
+        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).clear();
+        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys(nroDenuncia);
         //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
-        //driver.findElement(ByAngular.repeater("(rowRenderIndex, row) in rowContainer.renderedRows track by $index")).click();
+        //driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).clear();
+        //ie9-placeholder ng-binding"
+        //driver.findElement(By.xpath("//*[@id=\"dashboard-menu-item-2015.25\"]/div/div[2]/a")).click();
+        //driver.findElement(By.xpath("//*[@id=\"frag0_BaseTextDirectionMixin_0\"]")).sendKeys("22222");
+        //driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys("217237");
+        // driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys("217237");
+        //driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]")).sendKeys("217237");
+        // driver.findElement(By.xpath("//*[@id=\"dashboard-menu-item-2015.25\"]/div/div[2]/a")).click();
+        //driver.findElement(By.id("frag0_BaseTextDirectionMixin_0")).
+        //driver.findElement(By.xpath("//*[@id=\"frag0_BaseTextDirectionMixin_0\"]")).click(); 
+        //driver.findElement(By.xpath("//*[@id=\"editor_BaseTextDirectionMixin_0\"]")).sendKeys("217237"); 
+        //  driver.findElement(By.xpath("//*[@id=\"frag0_BaseTextDirectionMixin_0\"]")).sendKeys("217237");
+//         driver.findElement(By.id("frag0_BaseTextDirectionMixin_0")).sendKeys("217237"); 
+        //frag0_BaseTextDirectionMixin_0
+        // //*[@id="editor_BaseTextDirectionMixin_0"]
+        // //*[@id="frag0_BaseTextDirectionMixin_0"]
+        //driver.get("https://bpmd-pserver-cert.bse.com.uy:9443/ProcessPortal/dashboards/TWP/Processes");
+        //Buscar algun registro en estado aperturar
+        // BPMRutinas.getInstance().sprint4();
+        //class="menu-button menu-button-left"
+        //driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados']/a/label")).click();
+        //driver.findElement(By.linkText("Procesos")).click();
+        //driver.findElement(By.id("taskListPaginationButton_PaginationBar_0")).click();
+        //Parametrizar de un archivo. 
+        //driver.findElement(By.id("frag0_BaseTextDirectionMixin_0")).sendKeys("217237"); 
+        //driver.findElement(By.cssSelector("div.pillEditorMagnifyingGlass")).click();
+        //css=div.pillEditorMagnifyingGlass
+    }
+
+    @Test
+    public void testSecuencia2() throws Exception {
+        //BPMRutinas.getInstance().login();
+
+//        driver.findElement(By.partialLinkText("Bandeja")).click();
+//        String parent = getParentPathSikuliTextFile();
+//        String path = parent + "\\Sikuli_Run\\Resultado.txt";
+//        System.out.println("Path: " + path);
+//        cargarEnListaSalidaSikulix(path);
+//        mostrarListaSikulix();
+//        System.out.println("Despues de mostrar");
+//        for (SalidaSikulix listaEntradas : lstSikulix) {
+//            driver.findElement(By.id("frmPrincipal:buscarTxt")).sendKeys(listaEntradas.getNroDenuncia());
+//            driver.findElement(By.xpath("//button[@id='frmPrincipal:listaReclamos:0:selectButton']/span")).click();
+//            driver.findElement(By.linkText("Documentos Adjuntos")).click();
+//            driver.findElement(By.id("frmPrincipal:viewPppal:pfile_input")).sendKeys(path);
+//            driver.findElement(By.xpath("//a[@id='frmPrincipal:viewPppal:j_idt155']/img")).submit();
+//            driver.findElement(By.xpath("//a[@id='frmPrincipal:j_idt53']/img")).click();
+//        }
     }
 }

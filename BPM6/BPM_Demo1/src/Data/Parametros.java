@@ -15,6 +15,7 @@ public class Parametros {
      * *****************************URL BUILDER*******************************
      */
     private static final String PROTOCOL = "http";
+    private static final String PROTOCOLs = "https";
 
     /*                            TRAZABILIDAD                                */
     private static final String DOMAIN_TRAZABILIDAD = "jboss-test01";
@@ -29,10 +30,14 @@ public class Parametros {
     private static final String LOGIN_SITE_RECTOR = "frmservlet?config=recTEST";
 
     /*                                BPM                                     */
-    private static final String DOMAIN_BPM = "";
-    private static final String PORT_BPM = "";
-    private static final String SERVER_BPM = "";
-    private static final String LOGIN_SITE_BPM = "";
+    private static final String DOMAIN_BPM = "bpmd-pserver-cert.bse.com.uy";
+    private static final String PORT_BPM = "9443";
+    private static final String SERVER_BPM = "ProcessPortal";
+    private static final String LOGIN_SITE_BPM = "login.jsp";
+    //https://bpmd-pserver-cert.bse.com.uy:9443/ProcessPortal/login.jsp
+    //http://bpmd-pserver-cert.bse.com.uy:9443/ProcessPortal/login.jsp
+    //https://bpmd-pserver-cert.bse.com.uy:9443/ProcessPortal/login.jsp
+    //http://https//bpmd-pserver-cert.bse.com.uy:9443/ProcessPortal/login.jsp:9443/ProcessPortal/login.jsp
     
     /******************************CREDENTIALS*********************************/
     
@@ -45,8 +50,8 @@ public class Parametros {
     private static final String PASSWORD_RECTOR = "TESTING-3";
     
     /*                                  BPM                                   */
-    private static final String USERNAME_BPM = "";
-    private static final String PASSWORD_BPM = "";
+    private static final String USERNAME_BPM = "kamaro";
+    private static final String PASSWORD_BPM = "Nicholas4.";
     
     /*******************************CONSTANTES*********************************/
     
@@ -81,6 +86,7 @@ public class Parametros {
     private static String navigator;
     private static String webDriverProperty;
     private static String webDriverPath;
+    private static String protocol; 
 
     /*********************************INSTANCIA********************************/
     private static Parametros INSTANCIA = null;
@@ -97,6 +103,7 @@ public class Parametros {
         this.navigator = NAVIGATOR_TRAZABILIDAD;
         this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
         this.webDriverPath = WEB_DRIVER_CHROME_PATH;
+        this.protocol = PROTOCOL; 
     }
 
     private Parametros(String api) {
@@ -111,6 +118,7 @@ public class Parametros {
             this.navigator = NAVIGATOR_TRAZABILIDAD;
             this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
             this.webDriverPath = WEB_DRIVER_CHROME_PATH;
+            this.protocol = PROTOCOL; 
         }else if (api.equalsIgnoreCase("RECTOR")) {
             this.domain = DOMAIN_RECTOR;
             this.port = PORT_RECTOR;
@@ -122,6 +130,7 @@ public class Parametros {
             this.navigator = NAVIGATOR_RECTOR;
             this.webDriverProperty = WEB_DRIVER_IE_PROPERTY;
             this.webDriverPath = WEB_DRIVER_IE_PATH;
+            this.protocol = PROTOCOLs; 
         }else if (api.equalsIgnoreCase("BPM")) {
             this.domain = DOMAIN_BPM;
             this.port = PORT_BPM;
@@ -133,6 +142,7 @@ public class Parametros {
             this.navigator = NAVIGATOR_BPM;
             this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
             this.webDriverPath = WEB_DRIVER_CHROME_PATH;
+            this.protocol = PROTOCOLs;
         }else{
             this.domain = "";
             this.port = "";
@@ -163,12 +173,16 @@ public class Parametros {
     }
 
     public String getUrlBase() {
-        return PROTOCOL + "://" + domain + ":" + port;
+        return protocol + "://" + domain + ":" + port;
     }
-
+    
+    
     public String getLoginSite() {
         return getUrlBase() + "/" + server + "/" + loginSite;
     }
+    
+    
+    
     
     public String getUsername(){
         return username;
