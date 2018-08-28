@@ -1,19 +1,13 @@
 package TestCases;
 
 import Business.Logic.TrazabilidadRutinas;
-import Configuration.NavigatorDriverConfiguration;
-import Data.Parametros;
 import Entidades.SalidaSikulix;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import junit.framework.TestCase;
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -25,18 +19,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class TrazabilidadTest2 extends TestCase {
 
-    /*                          Navigators                                    */
-    private static final String NAVIGATOR_RECTOR = "IE";
-    private static final String NAVIGATOR_TRAZABILIDAD = "CHROME";
-    private static final String NAVIGATOR_BPM = "FIREFOX";
-
     /*                          Atributes                                     */
     private WebDriver driver;
-    private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
     private List<SalidaSikulix> lstSikulix;

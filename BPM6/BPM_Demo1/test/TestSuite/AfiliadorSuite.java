@@ -1,8 +1,5 @@
 package TestSuite;
 
-//import TestCases.ConsultasFechaTest;
-//import TestCases.ConsultasTitularTest;
-//import TestCases.IngresoBROUTest;
 import TestCases.*;
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -14,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-//@Suite.SuiteClasses({TestCases.IngresoBROUTest.class})
+//@Suite.SuiteClasses({TestCases.TrazabilidadTest1.class})
 public class AfiliadorSuite {
 
     @BeforeClass
@@ -37,6 +34,7 @@ public class AfiliadorSuite {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(TrazabilidadTest1.class);
         suite.addTestSuite(TrazabilidadTest2.class);
+        suite.addTestSuite(TrazabilidadTest3.class);
         return suite;
     }
 

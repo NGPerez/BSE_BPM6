@@ -1,7 +1,6 @@
 package TestCases;
 
 import Business.Logic.TrazabilidadRutinas;
-import Configuration.NavigatorDriverConfiguration;
 import Data.Parametros;
 import Entidades.SalidaSikulix;
 import java.io.FileWriter;
@@ -9,7 +8,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 import org.junit.After;
 import org.junit.AfterClass;
