@@ -53,44 +53,9 @@ public class BPMRutinas {
         driver.findElement(By.linkText("Continuar")).click();
     }
 
-    /*
-    private WebElement getNavigateMenu() throws Exception {
-        return selenium.driver.findElement(By.className("nav-pf-vertical"));
-    }
-     */
-    private WebElement getLeftMenuItemWebConsole(String itemText) throws Exception {
-
-        /*
-        
-        private WebElement getNavigateMenu() throws Exception {
-            return selenium.driver.findElement(By.className("nav-pf-vertical"));
-        }
-        
-        protected void clickOnItem(WebElement element) throws Exception {
-            clickOnItem(element, null);
-        }
-        
-        protected clickOnItem(WebElement element, String textToLog){
-            element.click();
-            angularDriver.waitForAngularRequestsToFinish();
-        }
-        
-         */
-        //List<WebElement> items = getNavigateMenu().findElement(By.className("list-group")).findElements(ByAngular.repeater("tab in tabs track by tab.$id"));
-        WebElement returnedItem = null;
-        /*
-        for (WebElement item : items) {
-            System.out.println("Got item: " + item.getText());
-            if (item.getText().equals(itemText)) {
-                returnedItem = item;
-            }
-        }
-         */
-        return returnedItem;
-    }
-
     private void indexOfIframe(String xpath) {
         int size = driver.findElements(By.tagName("iframe")).size();
+        System.out.println();
         System.out.println("SE VA A BUSCAR EL INDICE DEL IFRAME");
         System.out.println("===================================");
         for (int i = 0; i <= size; i++) {
@@ -100,10 +65,11 @@ public class BPMRutinas {
             System.out.println("Indice: " + i + " | valor: " + total + " | toString():" + elem.toString());
             driver.switchTo().defaultContent();
         }
+        System.out.println();
     }
 
     public void aperturar(String nroDenuncia) {
-        String recatalogar = "Audio";
+        //String recatalogar = "Audio";
         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys(nroDenuncia);
         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
         try {
@@ -138,6 +104,21 @@ public class BPMRutinas {
             a.printStackTrace();
         }
         driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_40_1_1_1_3_1_2\"]/button")).click();
+        
+        //Asignarme tarea en caso de ser necesario
+        
+        //Pasar de aperturar a analizar amparo
+        
+    }
+    
+    public void analizarAmparo(){
+        ngdriver.waitForAngularRequestsToFinish();
+        try {
+            Thread.sleep(1000); //Min 1000, Avg 1000
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1\"]/ul/li[1]/a")).click();
     }
 
     public void sprint4() {

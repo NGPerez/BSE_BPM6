@@ -94,6 +94,7 @@ public class TrazabilidadTest3 extends TestCase {
 
         BPMRutinas.getInstance().login();
         BPMRutinas.getInstance().aperturar(nroDenuncia);
+        BPMRutinas.getInstance().analizarAmparo();
         
 /*
         if (driver.findElement(ByAngular.repeater("item in binding.value.dataStore.data | apexOrderBy:columnSort.col:columnSort.reverse | startFrom: options.firstItemIndex | limitTo: options.itemsPerPage track by item.bpm_id")).getText().equalsIgnoreCase("Genérico de taller")) {

@@ -13,8 +13,7 @@ public class TrazabilidadRutinas {
         NavigatorDriverConfiguration fcd = new NavigatorDriverConfiguration(Parametros.getInstance().getNavigator(), Parametros.getInstance().getApi());
         driver = fcd.getDriver();
     }
-    
-    
+
     public static TrazabilidadRutinas getInstance(){
         if(INSTANCE == null){
            INSTANCE = new TrazabilidadRutinas();
