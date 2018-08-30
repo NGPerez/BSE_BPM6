@@ -4,17 +4,24 @@ import Configuration.NavigatorDriverConfiguration;
 import Data.Parametros;
 import com.paulhammant.ngwebdriver.ByAngular;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import com.sun.javafx.binding.Logging;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class BPMRutinas {
 
     private WebDriver driver;
     static NgWebDriver ngdriver;
     private static BPMRutinas INSTANCE = null;
+    //private SeleniumProvider selenium;
 
     private BPMRutinas() {
         NavigatorDriverConfiguration fcd = new NavigatorDriverConfiguration(Parametros.getInstance("BPM").getNavigator(), Parametros.getInstance("BPM").getApi());
@@ -33,6 +40,10 @@ public class BPMRutinas {
         return driver;
     }
 
+    public NgWebDriver getNgWebDriver() {
+        return ngdriver;
+    }
+
     public void login() {
         driver.get(Parametros.getInstance(Parametros.getInstance("BPM").getApi()).getLoginSite());
         driver.findElement(By.id("username")).clear();
@@ -42,7 +53,23 @@ public class BPMRutinas {
         driver.findElement(By.linkText("Continuar")).click();
     }
 
+    private void indexOfIframe(String xpath) {
+        int size = driver.findElements(By.tagName("iframe")).size();
+        System.out.println();
+        System.out.println("SE VA A BUSCAR EL INDICE DEL IFRAME");
+        System.out.println("===================================");
+        for (int i = 0; i <= size; i++) {
+            driver.switchTo().frame(i);
+            List<WebElement> elem = driver.findElements(By.xpath(xpath));
+            int total = elem.size();
+            System.out.println("Indice: " + i + " | valor: " + total + " | toString():" + elem.toString());
+            driver.switchTo().defaultContent();
+        }
+        System.out.println();
+    }
+
     public void aperturar(String nroDenuncia) {
+        //String recatalogar = "Audio";
         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[1]/div[1]/input")).sendKeys(nroDenuncia);
         driver.findElement(By.xpath("//*[@id=\"div_1_2_1_2_1\"]/div/div[1]/div[2]/button/i")).click();
         try {
@@ -51,27 +78,51 @@ public class BPMRutinas {
             Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
         }
         driver.findElement(ByAngular.repeater("(rowRenderIndex, row) in rowContainer.renderedRows track by $index")).click();
-        //driver.switchTo().alert().accept();
-        //driver.findElement(By.xpath("//*[@id=\"div_31_1_1_1\"]/button")).click();
+//        int size = driver.findElements(By.tagName("iframe")).size();
+//        System.out.println("Cantidad de iframes: " + size);
+        ngdriver.waitForAngularRequestsToFinish();
+        try {
+            Thread.sleep(6000); //Min 4500, Avg 6000
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        driver.switchTo().frame(2);
+        ngdriver.waitForAngularRequestsToFinish();
+//        size = driver.findElements(By.tagName("iframe")).size();
+//        System.out.println("Cantidad de iframes internos: " + size);
+        driver.switchTo().frame(0);
+        driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1\"]/ul/li[2]/a")).click();
+        driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_1_1_7\"]/div[2]/div/div[1]/table/thead/tr/th[1]/input")).click();
+        driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_1_1_1_1_4\"]/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_40_1_1_1_1_1_1_Input\"]")).click();
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_A);
+            robot.keyPress(KeyEvent.VK_U);
+            robot.keyPress(KeyEvent.VK_ENTER);
+        } catch (AWTException a) {
+            a.printStackTrace();
+        }
+        driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_40_1_1_1_3_1_2\"]/button")).click();
         
-        //driver.findElement(ByAngular.repeater("tab in tabs track by tab.$id == 2")).click();
+        //Asignarme tarea en caso de ser necesario
+        
+        //Pasar de aperturar a analizar amparo
+        
+    }
+    
+    public void analizarAmparo(){
+        ngdriver.waitForAngularRequestsToFinish();
+        try {
+            Thread.sleep(1000); //Min 1000, Avg 1000
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1\"]/ul/li[1]/a")).click();
     }
 
     public void sprint4() {
         //driver.get("https://bpmd-pserver-cert.bse.com.uy:9443/ProcessPortal/dashboards/TWP/Processes");
-
-        //driver.findElement(By.className("menu-button menu-button-left")).click();
-        //Buscar algun registro en estado aperturar
-        //BPMRutinas.getInstance().sprint4();
-        //driver.findElement(By.className("menu-button menu-button-left")).click();
-        //class="menu-button menu-button-left"
-        //driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados']/a/label")).click();
-        //driver.findElement(By.linkText("Procesos")).click();
-        //driver.findElement(By.id("taskListPaginationButton_PaginationBar_0")).click();
-        //Parametrizar de un archivo. 
-        //driver.findElement(By.id("frag0_BaseTextDirectionMixin_0")).sendKeys("217237"); 
-        //driver.findElement(By.cssSelector("div.pillEditorMagnifyingGlass")).click();
-        //css=div.pillEditorMagnifyingGlass
     }
 
 }
