@@ -174,6 +174,8 @@ public class TrazabilidadTest1 extends TestCase {
             printWriter.println(s.getNroDenuncia());
             printWriter.println(s.getNroPoliza());
         }
+        printWriter.close();
+        fileWriter.close();
     }
 
 }
