@@ -42,7 +42,7 @@ public class Parametros {
     
     /*                                  BPM                                   */
     private static final String USERNAME_BPM = "kamaro";
-    private static final String PASSWORD_BPM = "Nicholas4.";
+    private static final String PASSWORD_BPM = "Nicholas5.";
     
     /*******************************CONSTANTES*********************************/
     
