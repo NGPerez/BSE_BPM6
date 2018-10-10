@@ -114,14 +114,14 @@ public class TrazabilidadTest2 extends TestCase {
             br = new BufferedReader(fr);
 
             // Lectura del fichero
-            String linea;
+            String linea = "";
             int nroLinea = 0;
             System.out.println("cargarEnListaSalidaSikulix -> ANTES DE while ((linea = br.readLine()) != null)");
             while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
                 switch (nroLinea % 7) {
                     case 0:
-                        mes = linea;
+                        matricula = linea;
                         break;
                     case 1:
                         dia = linea;
@@ -192,6 +192,32 @@ public class TrazabilidadTest2 extends TestCase {
 
     private void mostrarListaSikulix() {
         System.out.println("mostrarListaSikulix -> INICIO");
+/*
+        lstSikulix.stream().map((s) -> {
+            System.out.println();
+            return s;
+        }).map((s) -> {
+            System.out.println("Matricula: " + s.getMatricula());
+            return s;
+        }).map((s) -> {
+            System.out.println("Fecha: " + s.getDia() + "/" + s.getMes() + "/" + s.getAnio());
+            return s;
+        }).map((s) -> {
+            System.out.println("Serie: " + s.getSerie());
+            return s;
+        }).map((s) -> {
+            System.out.println("Numero de Denuncia: " + s.getNroDenuncia());
+            return s;
+        }).map((s) -> {
+            System.out.println("Numero de Poliza: " + s.getNroPoliza());
+            return s;
+        }).map((_item) -> {
+            System.out.println();
+            return _item;
+        }).forEachOrdered((_item) -> {
+            System.out.println("===========================================================");
+        });
+*/
         for (SalidaSikulix s : lstSikulix) {
             System.out.println();
             System.out.println("Matricula: " + s.getMatricula());
@@ -218,18 +244,23 @@ public class TrazabilidadTest2 extends TestCase {
         System.out.println("Despues de mostrar");
         boolean present = false;
         for (SalidaSikulix listaEntradas : lstSikulix) {
+            Thread.sleep(250);
+            driver.findElement(By.id("frmPrincipal:buscarTxt")).click();
             driver.findElement(By.id("frmPrincipal:buscarTxt")).sendKeys(listaEntradas.getNroDenuncia());
+            driver.findElement(By.id("frmPrincipal:btnBuscar")).click();
             try {
-                if (driver.findElement(By.xpath("//*[@id=\"frmPrincipal:listaReclamos_data\"]/tr/td")).getText().equalsIgnoreCase("Ninguna linea que mostrar ...")) {
+                System.out.println("texto tabla: "+ driver.findElement(By.xpath("/html/body/div[3]/form/div/div/table[2]/tbody/tr[2]/td/div/div[2]/table/tbody/tr/td")).getText());
+                if (driver.findElement(By.xpath("/html/body/div[3]/form/div/div/table[2]/tbody/tr[2]/td/div/div[2]/table/tbody/tr/td")).getText().equalsIgnoreCase("Ninguna línea que mostrar ...")) {
                     present = true;
+                }else{
+                    present = false;
                 }
-                //*[@id="frmPrincipal:listaReclamos_data"]/tr/td
-
             } catch (NoSuchElementException e) {
                 present = false;
             }
-            if (present) {
-                driver.findElement(By.xpath("//button[@id='frmPrincipal:listaReclamos:0:selectButton']/span")).click();
+            System.out.println("valor de present: " + present);
+            if (!present) {
+                driver.findElement(By.xpath("//div[2]/table/tbody/tr/td/button")).click();
                 driver.findElement(By.linkText("Documentos Adjuntos")).click();
                 driver.findElement(By.id("frmPrincipal:viewPppal:pfile_input")).sendKeys(imgPath);
                 driver.findElement(By.xpath("//a[@id='frmPrincipal:viewPppal:j_idt155']/img")).submit();

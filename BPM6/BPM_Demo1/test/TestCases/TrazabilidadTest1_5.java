@@ -314,7 +314,7 @@ public class TrazabilidadTest1_5 extends TestCase {
                 }
             }
         }catch(NoAlertPresentException e) {}  
-        printWriter.println("&&");
+        //printWriter.println("&&");
         printWriter.close();
         fileWriter.close(); 
         
