@@ -87,13 +87,14 @@ public class TrazabilidadTest3 extends TestCase {
     @Test
     public void testFlujo1() throws Exception {
         String path = SalidaSikulixFabric.getInstancia().getSalidaSikulixController().getPathSikuliTextFile();
-        String nroDenuncia = "217237";
+        //String nroDenuncia = "217237";
+        String nroDenuncia = "217764";
 
         System.out.println("Path: " + path);
         SalidaSikulixFabric.getInstancia().getSalidaSikulixController().cargarEnListaSalidaSikulix(path);
 
         BPMRutinas.getInstance().login();
-        BPMRutinas.getInstance().aperturar(nroDenuncia);
+        BPMRutinas.getInstance().aperturar("%" + nroDenuncia + "%");
         BPMRutinas.getInstance().analizarAmparo();
         
 /*

@@ -82,14 +82,13 @@ public class BPMRutinas {
 //        System.out.println("Cantidad de iframes: " + size);
         ngdriver.waitForAngularRequestsToFinish();
         try {
-            Thread.sleep(6000); //Min 4500, Avg 6000
+            Thread.sleep(8000); //Min 4500, Avg 6000
         } catch (InterruptedException ex) {
             Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
         }
         driver.switchTo().frame(2);
         ngdriver.waitForAngularRequestsToFinish();
-//        size = driver.findElements(By.tagName("iframe")).size();
-//        System.out.println("Cantidad de iframes internos: " + size);
+        
         driver.switchTo().frame(0);
         driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1\"]/ul/li[2]/a")).click();
         driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_1_1_7\"]/div[2]/div/div[1]/table/thead/tr/th[1]/input")).click();
@@ -104,21 +103,30 @@ public class BPMRutinas {
             a.printStackTrace();
         }
         driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_40_1_1_1_3_1_2\"]/button")).click();
-        
+      
         //Asignarme tarea en caso de ser necesario
         
         //Pasar de aperturar a analizar amparo
-        
-    }
-    
-    public void analizarAmparo(){
         ngdriver.waitForAngularRequestsToFinish();
         try {
-            Thread.sleep(1000); //Min 1000, Avg 1000
+            Thread.sleep(2000); //Min 1000, Avg 1000
         } catch (InterruptedException ex) {
             Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
         }
         driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1\"]/ul/li[1]/a")).click();
+        
+    }
+    
+    public void analizarAmparo(){
+        /*
+        ngdriver.waitForAngularRequestsToFinish();
+        try {
+            Thread.sleep(2000); //Min 1000, Avg 1000
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1\"]/ul/li[1]/a")).click();
+        */
     }
 
     public void sprint4() {
