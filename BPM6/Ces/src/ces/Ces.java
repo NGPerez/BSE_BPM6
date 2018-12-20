@@ -16,7 +16,7 @@ public class Ces {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        WebDriver driver = new CrhomeDriver();
+        WebDriver driver = new ChromeDriver();
 
         driver.get(“http://capacitacion.ces.com.uy”)
     }

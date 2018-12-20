@@ -3,6 +3,7 @@ package TestCases;
 import Business.Logic.TrazabilidadRutinas;
 import Data.Parametros;
 import Entidades.SalidaSikulix;
+import Logica.Conexion;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,7 +38,7 @@ import static org.apache.xalan.lib.ExsltDatetime.date;
 public class TrazabilidadTest1_5 extends TestCase {
 
     /*                          Atributes                                     */
-    private WebDriver driver;
+    //private WebDriver driver;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
     List<SalidaSikulix> lstEntradaSikulix;
@@ -70,7 +71,7 @@ public class TrazabilidadTest1_5 extends TestCase {
         //    fail(verificationErrorString);
         //}
     }
-
+/*
     private boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
@@ -79,7 +80,8 @@ public class TrazabilidadTest1_5 extends TestCase {
             return false;
         }
     }
-
+    */
+/*
     private boolean isAlertPresent() {
         try {
             driver.switchTo().alert();
@@ -88,7 +90,8 @@ public class TrazabilidadTest1_5 extends TestCase {
             return false;
         }
     }
-
+    */
+/*
     private String closeAlertAndGetItsText() {
         try {
             Alert alert = driver.switchTo().alert();
@@ -103,7 +106,8 @@ public class TrazabilidadTest1_5 extends TestCase {
             acceptNextAlert = true;
         }
     }
-
+    */
+/*
     private void mostrarListaSikulix() {
         int i = 1;
         for (SalidaSikulix s : lstEntradaSikulix) {
@@ -119,7 +123,8 @@ public class TrazabilidadTest1_5 extends TestCase {
             i++;
         }
     }
-
+    */
+/*
     private Connection conexion;
     public void conectar() {
         try {
@@ -136,6 +141,7 @@ public class TrazabilidadTest1_5 extends TestCase {
             e.printStackTrace();
         }
     }
+
     public ResultSet consultar(String sql) {
         ResultSet resultado = null;
         try {
@@ -148,6 +154,22 @@ public class TrazabilidadTest1_5 extends TestCase {
             return null;
         }        return resultado;
     }
+    */
+    
+    public ResultSet consultar(String sql) {
+        ResultSet resultado = null;
+        Connection conexion = Conexion.getInstance().conectar();
+        try {
+            Statement sentencia;
+            sentencia = conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            resultado = sentencia.executeQuery(sql);
+            conexion.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }        return resultado;
+    }
+    
     public String CrearConsulta(String matricula){
         return "select cace_capo_nu_poliza,cace_nu_certificado,crpd_nu_endoso,cace_fe_desde,cace_fe_hasta,cacw_fe_desde,cacw_fe_hasta,cace_st_certificado,cacw_came_tp_transac" + 
                      " from cret_productos_datos,cart_certificados,cart_certificados_endosos" +
@@ -162,24 +184,22 @@ public class TrazabilidadTest1_5 extends TestCase {
                         " and cacw_nu_endoso=crpd_nu_endoso" +
                         " order by crpd_nu_endoso desc ";       
 //return "select *" + " from cret_productos_datos"; 
+
+        //Guardar nro de siniestro
         
     }
     private String getParentPathSikuliTextFile() {
         System.out.println("getParentPathSikuliTextFile -> INICIO");
-
-        //Atributos
         String path_file = System.getProperty("user.dir");
         int k = 0;
         String parent = "";
-
         for (String retval : path_file.split("\\\\")) {
             if (!retval.equalsIgnoreCase("BPM6") && (k == 0)) {
                 parent += retval + "\\";
             } else if (retval.equalsIgnoreCase("BPM6")) {
                 parent += retval;
                 k++;
-            } else {
-            }
+            } else {}
         }
         System.out.println("getParentPathSikuliTextFile -> FIN");
         return parent;
@@ -196,11 +216,8 @@ public class TrazabilidadTest1_5 extends TestCase {
         String anio = "";
         String serie = "";
         String nroDenuncia = "";
-        String nroPoliza = "";
-        
-       
-        String path = getParentPathSikuliTextFile() + "\\Sikuli_Run\\Entradas.txt";
-        
+        String nroPoliza = ""; 
+        String path = getParentPathSikuliTextFile() + "\\Sikuli_Run\\Entradas.txt";       
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
@@ -209,7 +226,7 @@ public class TrazabilidadTest1_5 extends TestCase {
             System.out.println("Archivo Path: " + archivo.getAbsolutePath());
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
-
+            
             // Lectura del fichero
             String linea;
             int nroLinea = 0;
@@ -273,23 +290,19 @@ public class TrazabilidadTest1_5 extends TestCase {
     @Test
     public void testLoginCorrecto() throws Exception {
         FileWriter fileWriter = new FileWriter("..//Sikuli_Run//Resultado.txt");
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        
-        conectar(); 
-        ResultSet resultado = null;
-        String consulta = ""; 
+        PrintWriter printWriter = new PrintWriter(fileWriter);  
+        //conectar(); 
+        //ResultSet resultado = null;
+        //String consulta = ""; 
         try{
-            List<SalidaSikulix> Lista = CargarLista();
-            
+            List<SalidaSikulix> Lista = CargarLista(); 
             for(int indice = 0;indice<Lista.size();indice++){
-                //System.out.println(Lista.get(indice).getMatricula());
-                
+                //System.out.println(Lista.get(indice).getMatricula());  
                 ResultSet resultados = consultar(CrearConsulta(Lista.get(indice).getMatricula()));
                 if ( resultados != null){
                     try {
                         boolean bandera = true;
-                        while (resultados.next() && bandera) {
-                            
+                        while (resultados.next() && bandera) {   
                             Calendar Medio = Calendar.getInstance();
                             Medio.set(Integer.parseInt(Lista.get(indice).getAnio()), Integer.parseInt(Lista.get(indice).getMes()) -1 , Integer.parseInt(Lista.get(indice).getDia()), 0, 0);
                             Date desde = resultados.getDate("CACW_FE_DESDE");
@@ -298,14 +311,13 @@ public class TrazabilidadTest1_5 extends TestCase {
                                 //System.out.println("Este" +indice);
                                 bandera = false; 
                                 String poliza = resultados.getNString("CACE_CAPO_NU_POLIZA");
-                                    printWriter.println(Lista.get(indice).getMatricula());
-                                    printWriter.println(Lista.get(indice).getDia());
-                                    printWriter.println(Lista.get(indice).getMes());
-                                    printWriter.println(Lista.get(indice).getAnio());
-                                    printWriter.println(Lista.get(indice).getSerie());
-                                    printWriter.println(Lista.get(indice).getNroDenuncia());
-                                    printWriter.println(resultados.getNString("CACE_CAPO_NU_POLIZA"));
-    
+                                printWriter.println(Lista.get(indice).getMatricula());
+                                printWriter.println(Lista.get(indice).getDia());
+                                printWriter.println(Lista.get(indice).getMes());
+                                printWriter.println(Lista.get(indice).getAnio());
+                                printWriter.println(Lista.get(indice).getSerie());
+                                printWriter.println(Lista.get(indice).getNroDenuncia());
+                                printWriter.println(resultados.getNString("CACE_CAPO_NU_POLIZA"));
                             }
                         }
                     } catch (Exception e) {
@@ -316,9 +328,6 @@ public class TrazabilidadTest1_5 extends TestCase {
         }catch(NoAlertPresentException e) {}  
         //printWriter.println("&&");
         printWriter.close();
-        fileWriter.close(); 
-        
-          
+        fileWriter.close();      
     }
 }
-

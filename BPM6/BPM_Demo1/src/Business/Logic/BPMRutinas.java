@@ -53,7 +53,7 @@ public class BPMRutinas {
         driver.findElement(By.linkText("Continuar")).click();
     }
 
-    private void indexOfIframe(String xpath) {
+    private int indexOfIframe(String xpath) {
         int size = driver.findElements(By.tagName("iframe")).size();
         System.out.println();
         System.out.println("SE VA A BUSCAR EL INDICE DEL IFRAME");
@@ -64,8 +64,12 @@ public class BPMRutinas {
             int total = elem.size();
             System.out.println("Indice: " + i + " | valor: " + total + " | toString():" + elem.toString());
             driver.switchTo().defaultContent();
+            if(total == 1){
+                return i;
+            }
         }
         System.out.println();
+        return -1;
     }
 
     public void aperturar(String nroDenuncia) {
@@ -78,11 +82,23 @@ public class BPMRutinas {
             Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
         }
         driver.findElement(ByAngular.repeater("(rowRenderIndex, row) in rowContainer.renderedRows track by $index")).click();
+        
+        /*********************************************************************************************************/
+        //xpath iframe
+        driver.switchTo().frame(indexOfIframe("//*[@id=\"2025.9b014f18-12c0-45c7-80c1-78f2c2eb3fcb\"]"));
+        driver.switchTo().frame(indexOfIframe("//*[@id=\"div_2_1_1_2_1_1\"]/ul/li[2]/a"));
+        
+        
+        
+        
+        /***********************************************************************************************************/
+        
 //        int size = driver.findElements(By.tagName("iframe")).size();
 //        System.out.println("Cantidad de iframes: " + size);
+/*
         ngdriver.waitForAngularRequestsToFinish();
         try {
-            Thread.sleep(8000); //Min 4500, Avg 6000
+            Thread.sleep(5000); //Min 4500, Avg 6000
         } catch (InterruptedException ex) {
             Logger.getLogger(BPMRutinas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -90,6 +106,7 @@ public class BPMRutinas {
         ngdriver.waitForAngularRequestsToFinish();
         
         driver.switchTo().frame(0);
+*/
         driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1\"]/ul/li[2]/a")).click();
         driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_1_1_7\"]/div[2]/div/div[1]/table/thead/tr/th[1]/input")).click();
         driver.findElement(By.xpath("//*[@id=\"div_2_1_1_2_1_1_1_2_1_1_1_1_1_1_1_1_1_4\"]/button")).click();

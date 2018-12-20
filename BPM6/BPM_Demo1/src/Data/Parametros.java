@@ -1,12 +1,20 @@
 package Data;
 
 public class Parametros {
+    
+    /*****************************URL BUILDER**********************************/
+    private static final String RECTOR_DATABASE_USERNAME = "consulta";
+    private static final String RECTOR_DATABASE_PASSWORD = "entrenomas";
+    private static final String RECTOR_DATABASE_HOST = "desa-db";
+    private static final String RECTOR_DATABASE_PORT = "1521";
+    private static final String RECTOR_DATABASE_NAME = "rectest";
+    private static final String RECTOR_DATABASE_DRIVER = "oracle.jdbc.OracleDriver";
+    private static final String RECTOR_DATABASE_DRIVER_TYPE = "thin";
+    private static final String RECTOR_DATABASE_DATASOURCE = "jdbc:oracle:"+RECTOR_DATABASE_DRIVER_TYPE+":@"+RECTOR_DATABASE_HOST+":"+RECTOR_DATABASE_PORT+":"+RECTOR_DATABASE_NAME;
 
-    /**
-     * *****************************URL BUILDER*******************************
-     */
+    /*****************************URL BUILDER**********************************/
     private static final String PROTOCOL = "http";
-    private static final String PROTOCOLs = "https";
+    private static final String SECURE_PROTOCOL = "https";
 
     /*                            TRAZABILIDAD                                */
     private static final String DOMAIN_TRAZABILIDAD = "jboss-test01";
@@ -82,69 +90,68 @@ public class Parametros {
     /*********************************INSTANCIA********************************/
     private static Parametros INSTANCIA = null;
     
-
     private Parametros() {
-        this.domain = DOMAIN_TRAZABILIDAD;
-        this.port = PORT_TRAZABILIDAD;
-        this.server = SERVER_TRAZABILIDAD;
-        this.loginSite = LOGIN_SITE_TRAZABILIDAD;
-        this.username = USERNAME_TRAZABILIDAD;
-        this.password = PASSWORD_TRAZABILIDAD;
-        this.api = API_TRAZABILIDAD;
-        this.navigator = NAVIGATOR_TRAZABILIDAD;
-        this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
-        this.webDriverPath = WEB_DRIVER_CHROME_PATH;
-        this.protocol = PROTOCOL; 
+        Parametros.domain = DOMAIN_TRAZABILIDAD;
+        Parametros.port = PORT_TRAZABILIDAD;
+        Parametros.server = SERVER_TRAZABILIDAD;
+        Parametros.loginSite = LOGIN_SITE_TRAZABILIDAD;
+        Parametros.username = USERNAME_TRAZABILIDAD;
+        Parametros.password = PASSWORD_TRAZABILIDAD;
+        Parametros.api = API_TRAZABILIDAD;
+        Parametros.navigator = NAVIGATOR_TRAZABILIDAD;
+        Parametros.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
+        Parametros.webDriverPath = WEB_DRIVER_CHROME_PATH;
+        Parametros.protocol = PROTOCOL; 
     }
 
     private Parametros(String api) {
         if (api.equalsIgnoreCase("TRAZABILIDAD")) {
-            this.domain = DOMAIN_TRAZABILIDAD;
-            this.port = PORT_TRAZABILIDAD;
-            this.server = SERVER_TRAZABILIDAD;
-            this.loginSite = LOGIN_SITE_TRAZABILIDAD;
-            this.username = USERNAME_TRAZABILIDAD;
-            this.password = PASSWORD_TRAZABILIDAD;
-            this.api = API_TRAZABILIDAD;
-            this.navigator = NAVIGATOR_TRAZABILIDAD;
-            this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
-            this.webDriverPath = WEB_DRIVER_CHROME_PATH;
-            this.protocol = PROTOCOL; 
+            Parametros.domain = DOMAIN_TRAZABILIDAD;
+            Parametros.port = PORT_TRAZABILIDAD;
+            Parametros.server = SERVER_TRAZABILIDAD;
+            Parametros.loginSite = LOGIN_SITE_TRAZABILIDAD;
+            Parametros.username = USERNAME_TRAZABILIDAD;
+            Parametros.password = PASSWORD_TRAZABILIDAD;
+            Parametros.api = API_TRAZABILIDAD;
+            Parametros.navigator = NAVIGATOR_TRAZABILIDAD;
+            Parametros.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
+            Parametros.webDriverPath = WEB_DRIVER_CHROME_PATH;
+            Parametros.protocol = PROTOCOL; 
         }else if (api.equalsIgnoreCase("RECTOR")) {
-            this.domain = DOMAIN_RECTOR;
-            this.port = PORT_RECTOR;
-            this.server = SERVER_RECTOR;
-            this.loginSite = LOGIN_SITE_RECTOR;
-            this.username = USERNAME_RECTOR;
-            this.password = PASSWORD_RECTOR;
-            this.api = API_RECTOR;
-            this.navigator = NAVIGATOR_RECTOR;
-            this.webDriverProperty = WEB_DRIVER_IE_PROPERTY;
-            this.webDriverPath = WEB_DRIVER_IE_PATH;
-            this.protocol = PROTOCOLs; 
+            Parametros.domain = DOMAIN_RECTOR;
+            Parametros.port = PORT_RECTOR;
+            Parametros.server = SERVER_RECTOR;
+            Parametros.loginSite = LOGIN_SITE_RECTOR;
+            Parametros.username = USERNAME_RECTOR;
+            Parametros.password = PASSWORD_RECTOR;
+            Parametros.api = API_RECTOR;
+            Parametros.navigator = NAVIGATOR_RECTOR;
+            Parametros.webDriverProperty = WEB_DRIVER_IE_PROPERTY;
+            Parametros.webDriverPath = WEB_DRIVER_IE_PATH;
+            Parametros.protocol = SECURE_PROTOCOL; 
         }else if (api.equalsIgnoreCase("BPM")) {
-            this.domain = DOMAIN_BPM;
-            this.port = PORT_BPM;
-            this.server = SERVER_BPM;
-            this.loginSite = LOGIN_SITE_BPM;
-            this.username = USERNAME_BPM;
-            this.password = PASSWORD_BPM;
-            this.api = API_BPM;
-            this.navigator = NAVIGATOR_BPM;
-            this.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
-            this.webDriverPath = WEB_DRIVER_CHROME_PATH;
-            this.protocol = PROTOCOLs;
+            Parametros.domain = DOMAIN_BPM;
+            Parametros.port = PORT_BPM;
+            Parametros.server = SERVER_BPM;
+            Parametros.loginSite = LOGIN_SITE_BPM;
+            Parametros.username = USERNAME_BPM;
+            Parametros.password = PASSWORD_BPM;
+            Parametros.api = API_BPM;
+            Parametros.navigator = NAVIGATOR_BPM;
+            Parametros.webDriverProperty = WEB_DRIVER_CHROME_PROPERTY;
+            Parametros.webDriverPath = WEB_DRIVER_CHROME_PATH;
+            Parametros.protocol = SECURE_PROTOCOL;
         }else{
-            this.domain = "";
-            this.port = "";
-            this.server = "";
-            this.loginSite = "";
-            this.username = "";
-            this.password = "";
-            this.api = "";
-            this.navigator = "";
-            this.webDriverProperty = "";
-            this.webDriverPath = "";
+            Parametros.domain = "";
+            Parametros.port = "";
+            Parametros.server = "";
+            Parametros.loginSite = "";
+            Parametros.username = "";
+            Parametros.password = "";
+            Parametros.api = "";
+            Parametros.navigator = "";
+            Parametros.webDriverProperty = "";
+            Parametros.webDriverPath = "";
         }
 
     }
@@ -167,13 +174,9 @@ public class Parametros {
         return protocol + "://" + domain + ":" + port;
     }
     
-    
     public String getLoginSite() {
         return getUrlBase() + "/" + server + "/" + loginSite;
     }
-    
-    
-    
     
     public String getUsername(){
         return username;
@@ -198,4 +201,23 @@ public class Parametros {
     public String getWebDriverPath(){
         return webDriverPath;
     }
+
+    public static String getRECTOR_DATABASE_DRIVER() {
+        return RECTOR_DATABASE_DRIVER;
+    }
+
+    public static String getRECTOR_DATABASE_DATASOURCE() {
+        return RECTOR_DATABASE_DATASOURCE;
+    }
+
+    public static String getRECTOR_DATABASE_USERNAME() {
+        return RECTOR_DATABASE_USERNAME;
+    }
+
+    public static String getRECTOR_DATABASE_PASSWORD() {
+        return RECTOR_DATABASE_PASSWORD;
+    }
+    
+    
+    
 }

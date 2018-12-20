@@ -33,8 +33,8 @@ public class AfiliadorSuite {
     public static Test suite() {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(TrazabilidadTest1.class);
+        suite.addTestSuite(TrazabilidadTest1_5.class);
         suite.addTestSuite(TrazabilidadTest2.class);
-        suite.addTestSuite(TrazabilidadTest3.class);
         return suite;
     }
 

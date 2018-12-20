@@ -7,8 +7,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class SalidaSikulixController implements SalidaSikulixInterface{
+public class SalidaSikulixController implements SalidaSikulixInterface {
 
     //Atributos
     List<SalidaSikulix> lstSikulix;
@@ -59,30 +60,30 @@ public class SalidaSikulixController implements SalidaSikulixInterface{
     @Override
     public SalidaSikulix getOfLstSikulixFromMatricula(String matricula) {
         SalidaSikulix ss = null;
-        for(SalidaSikulix ssAux: lstSikulix){
-            if(ssAux.getMatricula().equalsIgnoreCase(matricula)){
+        for (SalidaSikulix ssAux : lstSikulix) {
+            if (ssAux.getMatricula().equalsIgnoreCase(matricula)) {
                 return ss = ssAux;
             }
         }
         return ss;
     }
-    
+
     @Override
     public SalidaSikulix getOfLstSikulixFromNroDenuncia(String nroDenuncia) {
         SalidaSikulix ss = null;
-        for(SalidaSikulix ssAux: lstSikulix){
-            if(ssAux.getNroDenuncia().equalsIgnoreCase(nroDenuncia)){
+        for (SalidaSikulix ssAux : lstSikulix) {
+            if (ssAux.getNroDenuncia().equalsIgnoreCase(nroDenuncia)) {
                 return ss = ssAux;
             }
         }
         return ss;
     }
-    
+
     @Override
     public SalidaSikulix getOfLstSikulixFromNroPoliza(String nroPoliza) {
         SalidaSikulix ss = null;
-        for(SalidaSikulix ssAux: lstSikulix){
-            if(ssAux.getNroPoliza().equalsIgnoreCase(nroPoliza)){
+        for (SalidaSikulix ssAux : lstSikulix) {
+            if (ssAux.getNroPoliza().equalsIgnoreCase(nroPoliza)) {
                 return ss = ssAux;
             }
         }
@@ -94,19 +95,19 @@ public class SalidaSikulixController implements SalidaSikulixInterface{
         SalidaSikulix ss = getOfLstSikulixFromMatricula(matricula);
         return lstSikulix.remove(ss);
     }
-    
+
     @Override
     public boolean removeOfLstSikulixFromNroDenuncia(String nroDenuncia) {
         SalidaSikulix ss = getOfLstSikulixFromNroDenuncia(nroDenuncia);
         return lstSikulix.remove(ss);
     }
-    
+
     @Override
     public boolean removeOfLstSikulixFromNroPoliza(String nroPoliza) {
         SalidaSikulix ss = getOfLstSikulixFromNroPoliza(nroPoliza);
         return lstSikulix.remove(ss);
     }
-    
+
     @Override
     public void mostrarListaSikulix() {
         System.out.println("mostrarListaSikulix -> INICIO");
@@ -122,7 +123,7 @@ public class SalidaSikulixController implements SalidaSikulixInterface{
         }
         System.out.println("mostrarListaSikulix -> FIN");
     }
-    
+
     @Override
     public String getParentPathSikuliTextFile() {
         System.out.println("getParentPathSikuliTextFile -> INICIO");
@@ -144,7 +145,7 @@ public class SalidaSikulixController implements SalidaSikulixInterface{
         System.out.println("getParentPathSikuliTextFile -> FIN");
         return parent;
     }
-    
+
     @Override
     public void cargarEnListaSalidaSikulix(String path) {
         System.out.println("cargarEnListaSalidaSikulix -> INICIO");
