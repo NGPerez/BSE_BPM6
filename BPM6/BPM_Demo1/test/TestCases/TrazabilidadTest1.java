@@ -3,6 +3,9 @@ package TestCases;
 import Business.Logic.TrazabilidadRutinas;
 import Data.Parametros;
 import Entidades.SalidaSikulix;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -118,13 +121,38 @@ public class TrazabilidadTest1 extends TestCase {
         driver.findElement(By.id("clave")).sendKeys(Parametros.getInstance("TRAZABILIDAD").getPassword());
         driver.findElement(By.id("btnIngresar")).click();
         driver.findElement(By.cssSelector("span.ui-menuitem-text")).click();
+        
+        Thread.sleep(2000);
+        
+        //Cambio de fechas
+        try {
+            Robot robot = new Robot();
+            for(int i = 0; i< 10; i++){
+                robot.keyPress(KeyEvent.VK_DELETE);
+            }
+            robot.keyPress(KeyEvent.VK_0);
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyPress(KeyEvent.VK_DIVIDE);
+            robot.keyPress(KeyEvent.VK_0);
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyPress(KeyEvent.VK_DIVIDE);
+            robot.keyPress(KeyEvent.VK_2);
+            robot.keyPress(KeyEvent.VK_0);
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyPress(KeyEvent.VK_8);
+        } catch (AWTException a) {
+            a.printStackTrace();
+        }
+       
         driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados']/a/label")).click();
         driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados_panel']/div[2]/ul/li[2]/div/div/span")).click();
         driver.findElement(By.xpath("//div[@id='frmPrincipal:menuEstados']/a/label")).click();
-        driver.findElement(By.cssSelector("span.ui-button-text.ui-c")).submit();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//*[@id=\"frmPrincipal:btnBuscar\"]")).click();
+        //driver.findElement(By.cssSelector("span.ui-button-text.ui-c")).submit();
         WebElement nextPage = driver.findElement(By.cssSelector("span.ui-paginator-next.ui-state-default.ui-corner-all"));
         int inicio = 1;
-        while (!driver.findElement(By.cssSelector("span.ui-paginator-next.ui-state-default.ui-corner-all")).getAttribute("class").contains("ui-state-disabled")) {
+        while (!driver.findElement(By.cssSelector("span.ui-paginator-next.ui-state-default.ui-corner-all")).getAttribute("class").contains("ui-state-disabled") && (inicio < 10)) {
             for (int i = 1; i < 11; i++) {
                 SalidaSikulix entradaSikulix = new SalidaSikulix();
                 for (int j = 1; j < 9; j++) {

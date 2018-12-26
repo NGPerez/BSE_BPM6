@@ -244,6 +244,7 @@ public class TrazabilidadTest2 extends TestCase {
         System.out.println("Despues de mostrar");
         boolean present = false;
         for (SalidaSikulix listaEntradas : lstSikulix) {
+            System.out.println("*");
             Thread.sleep(250);
             driver.findElement(By.id("frmPrincipal:buscarTxt")).click();
             driver.findElement(By.id("frmPrincipal:buscarTxt")).sendKeys(listaEntradas.getNroDenuncia());
@@ -268,5 +269,6 @@ public class TrazabilidadTest2 extends TestCase {
             }
             driver.findElement(By.id("frmPrincipal:buscarTxt")).clear();
         }
+        System.out.println("Fin");
     }
 }

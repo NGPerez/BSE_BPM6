@@ -1,0 +1,11 @@
+Comienza el login  
+SOF4789
+Incorrecta: Fecha desde superior
+SBP7802
+Incorrecta: Fecha desde superior
+SBJ6753
+Incorrecta: Fecha desde superior
+SBL8316
+Incorrecta: Fecha desde superior
+B564782
+Incorrecta: Fecha desde superior
